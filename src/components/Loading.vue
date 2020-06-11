@@ -1,5 +1,5 @@
 <template>
-  <div class="spin-wrap">
+  <div class="spin-wrap" v-show="visible">
     <a-spin :spinning="visible"/>
   </div>
 </template>

@@ -1,10 +1,26 @@
 <template>
   <div class="page-automations">
     <div class="container">
+      <div class="top-tools">
+        <a-input-search placeholder="Search automations" enter-button
+          size="large" @search="onSearch" v-model="filter.searchText">
+          <a-select size="large" default-value="" style="width: 120px;"
+            :dropdownMatchSelectWidth="false" @change="onActionChange"
+            slot="addonBefore" v-model="filter.action">
+            <a-select-option v-for="item in options.actions" :key="item.value" :value="item.value">
+              {{ item.label }}
+            </a-select-option>
+          </a-select>
+        </a-input-search>
+        <a-button type="primary" size="large" class="btn-add" @click="onAddClick">
+          <a-icon type="plus"/>
+        </a-button>
+      </div>
       <loading :visible="loading"/>
       <div class="automations" v-if="list.length">
         <automation v-for="item in list" :key="item.id" :automation="item" />
       </div>
+      <a-empty v-if="!loading && !list.length"/>
     </div>
   </div>
 </template>
@@ -13,7 +29,7 @@
 import { automationService, installOk } from '../services/automation.service'
 import Automation from '../components/AutomationRow'
 import Loading from '../components/Loading'
-import { WEB_ACTIONS } from '../constant'
+import { WEB_ACTIONS, BUILDIN_ACTION_OPTIONS } from '../constant'
 
 export default {
   name: 'Automations',
@@ -26,7 +42,14 @@ export default {
   data() {
     return {
       loading: true,
-      list: []
+      list: [],
+      filter: {
+        action: '',
+        searchText: ''
+      },
+      options: {
+        actions: BUILDIN_ACTION_OPTIONS
+      }
     }
   },
 
@@ -64,10 +87,25 @@ export default {
     },
     
     loadData() {
-      automationService.list().then(results => {
+      const { action, searchText } = this.filter
+
+      this.loading = true
+      automationService.list(action, searchText.trim()).then(results => {
         this.loading = false
         this.list = results
       })
+    },
+
+    onSearch() {
+      this.loadData()
+    },
+
+    onAddClick() {
+      this.$router.push({ name: 'AutomationCreate' });
+    },
+
+    onActionChange() {
+      this.loadData()
     }
   },
 
@@ -87,7 +125,16 @@ export default {
   width: 960px;
 }
 
+.top-tools {
+  margin-bottom: 20px;
+  display: flex;
+}
+
 .automations {
   background: #fff;
+}
+
+.btn-add {
+  margin-left: 100px;
 }
 </style>
