@@ -26,7 +26,7 @@ jobs:
           npm run build
 
       - name: Deploy 🚀
-        uses: Steward-helper/Steward-helper.github.io@dev
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: master # The branch the action should deploy to.
