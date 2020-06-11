@@ -2,7 +2,7 @@
   <div class="automation-row">
     <div class="am-main">
       <div class="am-name">{{ automation.attributes.name }}</div>
-      <div class="am-intro">{{ automation.attributes.intro }}</div>
+      <div class="am-intro">{{ automation.attributes.pattern }}</div>
     </div>
     <div class="am-right">
       <div class="am-ins">
@@ -10,7 +10,7 @@
           :title="`确定要安装 「${automation.attributes.name}」?`"
           @confirm="installAutomation(automation)"
         >
-          <a-icon type="vertical-align-bottom" />
+          <my-icon type="icon-anzhuang" />
         </a-popconfirm>
         
         <span class="count">{{ automation.attributes.installations }}</span>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { MyIcon } from '../helpers/icon.helper'
 import { timeago } from '../filter/time'
 
 export default {
@@ -35,6 +36,10 @@ export default {
 
   filters: {
     timeago
+  },
+
+  components: {
+    MyIcon
   },
 
   methods: {
@@ -116,4 +121,5 @@ export default {
 .anticon {
   cursor: pointer;
 }
+
 </style>

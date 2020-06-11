@@ -1,5 +1,6 @@
 import AV from 'leancloud-storage'
 
+const Automation = AV.Object.extend('Automation');
 
 export const automationService = {
   list
@@ -7,7 +8,7 @@ export const automationService = {
 
 export function list(action, searchText) {
   const query = new AV.Query('Automation');
-  query.equalTo('status', 2);
+  // query.equalTo('status', 2);
 
   if (action) {
     query.equalTo('type', action)
@@ -27,5 +28,40 @@ export function installOk(id) {
   
   return automation.save(null, {
     fetchWhenSave: true
+  })
+}
+
+export function isExisted(instructions, pattern) {
+  const query = new AV.Query('Automation');
+
+  query.equalTo('instructions', instructions)
+  query.equalTo('pattern', pattern)
+
+  return query.first().then(item => {
+    return Boolean(item)
+  })
+}
+
+function create(attrs) {
+  const { instructions, pattern, name, intro, type, } = attrs 
+  const automation = new Automation();
+  automation.set('instructions', instructions)
+  automation.set('pattern', pattern)
+  automation.set('name', name)
+  automation.set('intro', intro)
+  automation.set('type', type)
+
+  return automation.save()
+}
+
+export function addOne(attrs) {
+  const { instructions, pattern, } = attrs
+
+  return isExisted(instructions, pattern).then(existed => {
+    if (!existed) {
+      return create(attrs)
+    } else {
+      return Promise.reject('Automation has existed')
+    }
   })
 }

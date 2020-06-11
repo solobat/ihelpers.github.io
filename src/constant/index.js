@@ -17,18 +17,20 @@ export const BUILDIN_ACTIONS = {
   CLICK: 'click'
 }
 
-export const BUILDIN_ACTION_OPTIONS = [
-  {
-    value: '',
-    label: 'All'
-  },
+export const BUILDIN_ACTION_CONFIGS = [
   {
     value: BUILDIN_ACTIONS.READ_MODE,
     label: 'Read Mode',
+    args: [
+      { tips: 'metaKey', name: 'metaKey', type: 'boolean', value: false, defaultValue: false }
+    ],
   },
   {
     value: BUILDIN_ACTIONS.KILL_ELEMENT,
     label: 'Kill Element',
+    args: [
+      { tips: 'metaKey', name: 'metaKey', type: 'boolean', value: false, defaultValue: false }
+    ],
   },
   {
     value: BUILDIN_ACTIONS.HIGHLIGHT_ENGLISH_SYNTAX,
@@ -53,6 +55,12 @@ export const BUILDIN_ACTION_OPTIONS = [
   {
     value: BUILDIN_ACTIONS.CODE_COPY,
     label: 'Code copy',
+    args: [
+      { tips: 'child of <pre> tag', name: 'inpre', type: 'boolean', value: false, defaultValue: false },
+      { tips: '<pre> tag', name: 'pre', type: 'boolean', value: false, defaultValue: false },
+      { tips: 'Remove some elements', name: 'rm', type: 'string',
+        value: '', defaultValue: '', placeholder: 'css selector' }
+    ]
   },
   {
     value: BUILDIN_ACTIONS.CLICK,
@@ -61,5 +69,22 @@ export const BUILDIN_ACTION_OPTIONS = [
   {
     value: BUILDIN_ACTIONS.GOTO_ELEMENT,
     label: 'Goto element',
+    args: [
+      { tips: 'Auto Goto', name: 'auto', type: 'boolean', value: false, defaultValue: false },
+      { tips: 'Target', name: 'to', type: 'string', value: '',
+        defaultValue: '', placeholder: 'css selector' },
+      { tips: 'Order', name: 'order', type: 'string', value: 'asc',
+        defaultValue: 'asc', placeholder: 'desc/asc' },
+      { tips: 'Handle, The available functions are: {text|trim|number|siblingText}', 
+        name: 'handle', type: 'string', value: '', defaultValue: '', placeholder: '[.selector,fn]' }
+    ],
   }
+]
+
+export const BUILDIN_ACTION_OPTIONS = [
+  {
+    value: '',
+    label: 'All'
+  },
+  ...BUILDIN_ACTION_CONFIGS
 ]

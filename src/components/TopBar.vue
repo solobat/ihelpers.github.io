@@ -13,6 +13,15 @@
             </li>
           </ul>
         </nav>
+        <nav class="right-nav">
+          <ul>
+            <li>
+              <a class="github-button" href="https://github.com/solobat/steward-helper"
+                data-icon="octicon-star" data-size="large" data-show-count="true"
+                aria-label="Star solobat/steward-helper on GitHub">Star</a>
+            </li>
+          </ul>
+        </nav>
       </div>
     </header>
   </div>
