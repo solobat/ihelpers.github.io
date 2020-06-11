@@ -1,6 +1,14 @@
 <template>
-  <div class="home">
-    Steward Helper
+  <div class="page-home">
+    <div class="container">
+      <h1>Steward Helper</h1>
+      <div class="subtit">Chrome 浏览器自动化效率工具</div>
+      <div class="install">
+        <a href="https://chrome.google.com/webstore/detail/hcnekoladldejmeindnhpjkfhjadcick"
+        class="ins-btn ins-webstore" target="_blank">应用商店</a>or,
+        <a href class="ins-btn ins-offline">离线下载</a>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -8,8 +16,45 @@
 // @ is an alias to /src
 
 export default {
-  name: 'Home',
-  components: {
+  name: "Home",
+  components: {}
+};
+</script>
+<style lang="scss" scoped>
+@import "../styles/scss/theme.scss";
+
+.page-home {
+  .container {
+    margin: 0 auto;
+    padding-top: 100px;
+    width: 960px;
   }
 }
-</script>
+
+h1 {
+  text-align: center;
+  font-weight: 500;
+  font-size: 30px;
+}
+
+.subtit {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 24px;
+}
+
+.install {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.ins-webstore {
+  margin-right: 5px;
+  font-size: 24px;
+}
+
+.ins-offline {
+  margin-left: 10px;
+  font-size: 16px;
+}
+</style>
