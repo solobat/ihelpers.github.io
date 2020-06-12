@@ -18,7 +18,7 @@
       </div>
       <loading :visible="loading"/>
       <div class="automations" v-if="list.length">
-        <automation v-for="item in list" :key="item.id" :automation="item" />
+        <automation v-for="item in list" :key="item.objectId" :automation="item" />
       </div>
       <a-empty v-if="!loading && !list.length"/>
     </div>
@@ -26,10 +26,11 @@
 </template>
 
 <script>
-import { automationService, installOk } from '../services/automation.service'
+import { automationService } from '../services/automation.service'
 import Automation from '../components/AutomationRow'
 import Loading from '../components/Loading'
-import { WEB_ACTIONS, BUILDIN_ACTION_OPTIONS } from '../constant'
+import InstallokMixin from '../mixins/installok.mixin'
+import { BUILDIN_ACTION_OPTIONS } from '../constant'
 
 export default {
   name: 'Automations',
@@ -38,6 +39,8 @@ export default {
     Automation,
     Loading
   },
+
+  mixins: [InstallokMixin],
 
   data() {
     return {
@@ -54,47 +57,17 @@ export default {
   },
 
   methods: {
-    init() {
-      this.bindEvents();
+    getAutomation(aid) {
+      return this.list.find(item => item.objectId === aid)
     },
 
-    onInstallOk(data) {
-      const aid = data.id
-      const am = this.list.find(item => item.id === aid)
-
-      installOk(am.attributes.installations.id).then(result => {
-        am.attributes.installations.attributes.count = result.attributes.count
-      })
-    },
-
-    bindEvents() {
-      document.addEventListener('stewardHelper', (event) => {
-        const { action, data } = event.detail
-
-        switch (action) {
-          case WEB_ACTIONS.INSTALL_DONE:
-            this.onInstallOk(data);
-            break;
-          default:
-            break;
-        }
-      })
-    },
-
-    updateInstallations(id, attributes = {}) {
-      const item = this.list.find(item => item.id === id)
-      if (item) {
-        item.attributes.installations = attributes.installations || 0
-      }
-    },
-    
     loadData() {
       const { action, searchText } = this.filter
 
       this.loading = true
       automationService.list(action, searchText.trim()).then(results => {
         this.loading = false
-        this.list = results
+        this.list = results.map(item => item.toJSON())
       })
     },
 
@@ -112,7 +85,6 @@ export default {
   },
 
   mounted() {
-    this.init()
     this.loadData()
   }
 }

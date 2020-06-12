@@ -1,4 +1,6 @@
 {
+  "Intro": "说明",
+  "No.Intro": "没有说明",
   "choose.automation.action": "请选择 action",
   "confirm.install": "确定要安装 「{name}」到 Steward Helper 吗?",
   "create": "创建",

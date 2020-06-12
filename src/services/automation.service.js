@@ -6,7 +6,8 @@ const Automation = AV.Object.extend('Automation');
 
 export const automationService = {
   list,
-  listOfAuthor
+  listOfAuthor,
+  item
 }
 
 export function list(action, searchText) {
@@ -34,6 +35,15 @@ export function listOfAuthor(uid) {
   query.include('installations')
 
   return query.find()
+}
+
+export function item(id) {
+  const query = new AV.Query('Automation');
+
+  query.include('author')
+  query.include('installations')
+
+  return query.get(id)
 }
 
 export function installOk(id) {

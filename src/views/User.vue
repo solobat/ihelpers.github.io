@@ -8,7 +8,7 @@
         </div>
         <div class="user-data">
           <div class="automations" v-if="list.length">
-            <automation v-for="item in list" :key="item.id" :automation="item" />
+            <automation v-for="item in list" :key="item.objectId" :automation="item" />
           </div>
           <a-empty v-if="!loading && !list.length"/>
         </div>
@@ -20,6 +20,7 @@
 <script>
 import { automationService } from '../services/automation.service'
 import Automation from '../components/AutomationRow'
+import InstallokMixin from '../mixins/installok.mixin'
 
 export default {
   name: 'User',
@@ -27,6 +28,8 @@ export default {
   components: {
     Automation
   },
+
+  mixins: [InstallokMixin],
 
   data() {
     return {
@@ -38,7 +41,7 @@ export default {
   computed: {
     user() {
       if (this.list.length) {
-        return this.list[0].attributes.author.attributes
+        return this.list[0].author
       } else {
         return null;
       }
@@ -46,9 +49,13 @@ export default {
   },
 
   methods: {
+    getAutomation(aid) {
+      return this.list.find(item => item.objectId === aid)
+    },
+
     loadData() {
       automationService.listOfAuthor(this.uid).then(list => {
-        this.list = list
+        this.list = list.map(item => item.toJSON())
       })
     }
   },

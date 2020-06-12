@@ -1,24 +1,30 @@
 <template>
   <div class="automation-row">
     <div class="am-main">
-      <div class="am-name">{{ automation.attributes.name }}</div>
-      <div class="am-intro">{{ automation.attributes.pattern }}</div>
+      <div class="am-name">
+        <router-link :to="`/automation/${automation.objectId}`">
+          {{ automation.name }}
+        </router-link>
+      </div>
+      <div class="am-intro">{{ automation.pattern }}</div>
     </div>
     <div class="am-right">
       <div class="am-ins">
         <a-popconfirm
-          :title="$t('confirm.install', { name: automation.attributes.name})"
+          :title="$t('confirm.install', { name: automation.name})"
           @confirm="installAutomation(automation)"
         >
           <my-icon type="icon-anzhuang" />
         </a-popconfirm>
         
-        <span class="count">{{ automation.attributes.installations.attributes.count }}</span>
+        <span class="count" v-if="automation.installations">
+          {{ automation.installations.count }}
+        </span>
       </div>
       <div class="am-created">
         <div class="author">by
-          <router-link :to="`/user/${automation.attributes.author.id}`">
-            {{ automation.attributes.author.attributes.username }}
+          <router-link :to="`/user/${automation.author.objectId}`">
+            {{ automation.author.username }}
           </router-link>
         </div>
         <div class="time">{{ automation.createdAt | timeago }}</div>
@@ -30,6 +36,7 @@
 <script>
 import { MyIcon } from '../helpers/icon.helper'
 import { timeago } from '../filter/time'
+import InstallMixin from '../mixins/install.mixin'
 
 export default {
   props: ['automation'],
@@ -39,25 +46,13 @@ export default {
     timeago
   },
 
+  mixins: [InstallMixin],
+
   components: {
     MyIcon
   },
 
   methods: {
-    installAutomation(automation) {
-      const attrs = {
-        ...automation.attributes,
-        id: automation.id
-      }
-      const event = new CustomEvent('ihelpers', {
-        detail: {
-          action: 'installAutomation',
-          data: attrs
-        }
-      });
-
-      document.dispatchEvent(event);
-    }
   }
 }
 </script>

@@ -1,4 +1,6 @@
 {
+  "Intro": "Intro",
+  "No.Intro": "No Intro",
   "choose.automation.action": "Please choose an action!",
   "confirm.install": "Are you sure you want to install [{name}] to Steward Helper?",
   "create": "Create",
