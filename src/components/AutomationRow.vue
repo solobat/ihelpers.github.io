@@ -7,7 +7,7 @@
     <div class="am-right">
       <div class="am-ins">
         <a-popconfirm
-          :title="`确定要安装 「${automation.attributes.name}」?`"
+          :title="$t('confirm.install', { name: automation.attributes.name})"
           @confirm="installAutomation(automation)"
         >
           <my-icon type="icon-anzhuang" />
@@ -57,16 +57,6 @@ export default {
       });
 
       document.dispatchEvent(event);
-    },
-
-    onInstallClick(automation) {
-      this.$confirm({
-        title: `确定要安装「${automation.attributes.name}」到 Steward Helper 吗?`,
-        onOk() {
-          this.installAutomation(automation);
-        },
-        onCancel() {},
-      });
     }
   }
 }

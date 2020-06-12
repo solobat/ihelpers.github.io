@@ -2,11 +2,11 @@
   <div class="page-home">
     <div class="container">
       <h1>Steward Helper</h1>
-      <div class="subtit">Chrome 浏览器自动化效率工具</div>
+      <div class="subtit">{{$t("desc")}}</div>
       <div class="install">
         <a href="https://chrome.google.com/webstore/detail/hcnekoladldejmeindnhpjkfhjadcick"
-        class="ins-btn ins-webstore" target="_blank">应用商店</a>or,
-        <a href class="ins-btn ins-offline">离线下载</a>
+        class="ins-btn ins-webstore" target="_blank">{{$t("webstore")}}</a>or,
+        <a href class="ins-btn ins-offline">{{$t("download")}}</a>
       </div>
       <div class="social-btns">
       </div>

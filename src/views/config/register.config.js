@@ -10,17 +10,17 @@ export function getDefaultForm() {
 
 export function getFormRules(vm) {
   return {
-    username: [{ required: true, message: 'Please enter your username' }],
-    email: [{ type: 'email', message: 'Not a valid email' }],
-    password: [{ required: true, message: 'Please enter your password' }],
+    username: [{ required: true, message: vm.$t('enter.username') }],
+    email: [{ type: 'email', message: vm.$t('not.email') }],
+    password: [{ required: true, message: vm.$t('enter.password') }],
     repassword: [
-      { required: true, message: 'Please enter your password again' },
+      { required: true, message: vm.$t('reenter.password') },
       {
         validator: (rule, value, callback) => {
           if (value && value === vm.form.password) {
             callback();
           } else {
-            callback(new Error('Different from password'));
+            callback(new Error(vm.$t('diff.password')));
           }
         }
       }

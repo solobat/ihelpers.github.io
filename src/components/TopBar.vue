@@ -6,7 +6,7 @@
         <nav class="main-nav">
           <ul class="nav-list">
             <li class="nav-item">
-              <router-link to="/">Home</router-link>
+              <router-link to="/">{{$t("home")}}</router-link>
             </li>
             <li class="nav-item">
               <router-link to="/automations">Automations</router-link>
@@ -21,15 +21,30 @@
                 aria-label="Star solobat/steward-helper on GitHub">Star</a>
             </li>
             <li v-if="!loggedIn">
-              <router-link to="/register" class="link-btn">Sign up</router-link>
-              <router-link to="/login" class="link-btn">Login</router-link>
+              <router-link to="/register" class="link-btn">{{$t('signup')}}</router-link>
+              <router-link to="/login" class="link-btn">{{$t('login')}}</router-link>
             </li>
             <li v-else>
               <a-dropdown :trigger="['click']" overlayClassName="user-layer">
                 <span>{{user.username}}</span>
                 <a-menu slot="overlay">
                   <a-menu-item>
-                    <div @click="onLogoutClick">登出</div>
+                    <div @click="onLogoutClick">{{$t("logout")}}</div>
+                  </a-menu-item>
+                </a-menu>
+              </a-dropdown>
+            </li>
+            <li>
+              <a-dropdown :trigger="['click']">
+                <span>{{$t("langChoose")}}
+                  <a-icon type="down" />
+                </span>
+                <a-menu slot="overlay">
+                  <a-menu-item @click="changeLang('en')">
+                    <a href="javascript:;">English</a>
+                  </a-menu-item>
+                  <a-menu-item>
+                    <a href="javascript:;" @click="changeLang('zh_CN')">简体中文</a>
                   </a-menu-item>
                 </a-menu>
               </a-dropdown>
@@ -56,8 +71,13 @@ export default {
 
     onLogoutClick() {
       this.logout().then(() => {
-        this.$message.success('登出成功');
+        this.$message.success(this.$t('logout.ok'));
       })
+    },
+
+    changeLang(lang) {
+      this.$i18n.locale = lang
+      window.localStorage.setItem('language', lang)
     }
   }
 };
@@ -93,7 +113,7 @@ export default {
 
   a {
     text-decoration: none;
-    color: $color;
+    color: $color-deep;
 
     &:hover {
       color: $color-primary;
@@ -133,7 +153,7 @@ export default {
     }
 
     .link-btn {
-      margin-left: 10px;
+      margin-left: 20px;
     }
   }
 

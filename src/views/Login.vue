@@ -10,14 +10,14 @@
           ref="form"
           :rules="rules"
         >
-          <a-form-model-item label="Username" prop="username">
-            <a-input v-model="form.username" placeholder="Please enter your username"></a-input>
+          <a-form-model-item :label="$t('username')" prop="username">
+            <a-input v-model="form.username" :placeholder="$t('enter.username')"></a-input>
           </a-form-model-item>
-          <a-form-model-item label="Password" prop="password">
-            <a-input-password v-model="form.password" placeholder="Please enter your password"></a-input-password>
+          <a-form-model-item :label="$t('password')" prop="password">
+            <a-input-password v-model="form.password" :placeholder="$t('enter.password')"></a-input-password>
           </a-form-model-item>
           <a-form-model-item :wrapper-col="{ span: 10, offset: 5 }">
-            <a-button type="primary" html-type="submit" :disabled="submitting">Login</a-button>
+            <a-button type="primary" html-type="submit" :disabled="submitting">{{$t("login")}}</a-button>
           </a-form-model-item>
         </a-form-model>
       </div>
@@ -51,13 +51,14 @@ export default {
       this.submitting = true;
       this.login({ username, password }).then(() => {
         this.submitting = false;
-        this.$message.success('Login successfully', 1, () => {
+        this.$message.success(this.$t('login.ok'), 1, () => {
           const toURL = this.$route.query.redirect || '/'
 
           this.$router.push(toURL);
         });
       }).catch((error) => {
         console.log("submit -> error", error)
+        this.$message.error(this.$t('login.error'))
       })
     },
   

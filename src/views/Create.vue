@@ -5,12 +5,12 @@
         <a-form-model :model="form" :label-col="{ span: 5 }" :wrapper-col="{ span: 10 }"
           @submit="handleSubmit" ref="form" :rules="rules">
           <a-form-model-item label="Name" prop="name">
-            <a-input v-model="form.name" placeholder="Please enter the name of automation">
+            <a-input v-model="form.name" :placeholder="$t('enter.automation.name')">
             </a-input>
           </a-form-model-item>
           <a-form-model-item label="Action" prop="type">
             <a-select :dropdownMatchSelectWidth="false"
-              placeholder="Please choose an action!"
+              :placeholder="$t('choose.automation.action')"
               @change="onActionChange"
               v-model="form.type">
               <a-select-option v-for="item in options.actions" :key="item.value" :value="item.value">
@@ -31,7 +31,7 @@
           </template>
           <a-form-model-item label="Target" prop="target">
             <a-input v-model="form.target"
-              placeholder="Please enter the selector of target elements">
+              :placeholder="$t('enter.automation.target.selector')">
               <div slot="addonBefore">@</div>
             </a-input>
           </a-form-model-item>
@@ -39,17 +39,17 @@
             <code class="code">{{instructions}}</code>
           </a-form-model-item>
           <a-form-model-item label="Pattern" prop="pattern">
-            <a-input v-model="form.pattern" placeholder="Please enter the URL pattern">
+            <a-input v-model="form.pattern" :placeholder="$t('enter.automation.url.pattern')">
             </a-input>
           </a-form-model-item>
           <a-form-model-item label="Intro" prop="intro">
             <a-textarea v-model="form.intro"
-              placeholder="Please enter the intro of automation" :autoSize="{minRows: 2}">
+              :placeholder="$t('enter.automation.intro')" :autoSize="{minRows: 2}">
             </a-textarea>
           </a-form-model-item>
           <a-form-model-item :wrapper-col="{ span: 10, offset: 5 }">
             <a-button type="primary" html-type="submit"
-              :disabled="submitting">Create</a-button>
+              :disabled="submitting">{{$t("create")}}</a-button>
           </a-form-model-item>
         </a-form-model>
       </div>
@@ -73,10 +73,10 @@ export default {
       actionConfigs: getActionConfigs(),
       form: getDefaultForm(),
       rules: {
-        name: [{ required: true, message: 'Please enter the name of automation' }],
-        type: [{ required: true, message: 'Please choose an action!' }],
-        target: [{ required: true, message: 'Please enter the selector of target elements' }],
-        pattern: [{ required: true, message: 'Please enter the URL pattern' }],
+        name: [{ required: true, message: this.$t('enter.automation.name') }],
+        type: [{ required: true, message: this.$t('choose.automation.action') }],
+        target: [{ required: true, message: this.$t('enter.automation.target.selector') }],
+        pattern: [{ required: true, message: this.$t('enter.automation.url.pattern') }],
       },
       args: [],
       submitting: false
@@ -123,10 +123,11 @@ export default {
 
       addOne(formData).then(() => {
         this.submitting = false
-        this.$message.success('Create successfully!')
+        this.$message.success(this.$t('create.ok'))
         this.reset()
       }).catch((msg = 'Something error') => {
-        this.$message.error(msg)
+        console.log("submit -> msg", msg)
+        this.$message.error(this.$t('create.error'))
       })
     },
 

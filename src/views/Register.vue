@@ -10,23 +10,23 @@
           ref="form"
           :rules="rules"
         >
-          <a-form-model-item label="Username" prop="username">
-            <a-input v-model="form.username" placeholder="Please enter your username"></a-input>
+          <a-form-model-item :label="$t('username')" prop="username">
+            <a-input v-model="form.username" :placeholder="$t('enter.username')"></a-input>
           </a-form-model-item>
-          <a-form-model-item label="Email" prop="email">
-            <a-input v-model="form.email" placeholder="Please enter your email"></a-input>
+          <a-form-model-item :label="$t('email')" prop="email">
+            <a-input v-model="form.email" :placeholder="$t('enter.email')"></a-input>
           </a-form-model-item>
-          <a-form-model-item label="Password" prop="password">
-            <a-input-password v-model="form.password" placeholder="Please enter your password"></a-input-password>
+          <a-form-model-item :label="$t('password')" prop="password">
+            <a-input-password v-model="form.password" :placeholder="$t('enter.password')"></a-input-password>
           </a-form-model-item>
-          <a-form-model-item label="Repassword" prop="repassword">
+          <a-form-model-item :label="$t('repassword')" prop="repassword">
             <a-input-password
               v-model="form.repassword"
-              placeholder="Please enter your password again"
+              :placeholder="$t('reenter.password')"
             ></a-input-password>
           </a-form-model-item>
           <a-form-model-item :wrapper-col="{ span: 10, offset: 5 }">
-            <a-button type="primary" html-type="submit" :disabled="submitting">Sign up</a-button>
+            <a-button type="primary" html-type="submit" :disabled="submitting">{{$t("signup")}}</a-button>
           </a-form-model-item>
         </a-form-model>
       </div>
@@ -62,12 +62,13 @@ export default {
       this.submitting = true;
       userService.register({ username, password, email }).then((user) => {
         this.submitting = false;
-        this.$message.success('Register successfully', 1, () => {
+        this.$message.success(this.$t('register.ok'), 1, () => {
           this.$store.dispatch('account/updateUser', user)
           this.afterRegister()
         });
       }).catch((error) => {
         console.log("submit -> error", error)
+        this.$message.error(this.$t('register.error'))
       })
     },
   

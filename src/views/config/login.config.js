@@ -6,9 +6,9 @@ export function getDefaultForm() {
   }
 }
 
-export function getFormRules() {
+export function getFormRules(vm) {
   return {
-    username: [{ required: true, message: 'Please enter your username' }],
-    password: [{ required: true, message: 'Please enter your password' }],
+    username: [{ required: true, message: vm.$t('enter.username') }],
+    password: [{ required: true, message: vm.$t('enter.password') }],
   }
 }
