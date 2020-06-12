@@ -39,6 +39,11 @@ const routes = [
     meta: {
       redirectAuthed: '/',
     },
+  },
+  {
+    path: '/user/:id',
+    name: 'User',
+    component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
   }
 ]
 

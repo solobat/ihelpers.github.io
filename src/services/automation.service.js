@@ -3,7 +3,8 @@ import AV from 'leancloud-storage'
 const Automation = AV.Object.extend('Automation');
 
 export const automationService = {
-  list
+  list,
+  listOfAuthor
 }
 
 export function list(action, searchText) {
@@ -17,6 +18,15 @@ export function list(action, searchText) {
   if (searchText) {
     query.contains('name', searchText);
   }
+  query.include('author')
+
+  return query.find()
+}
+
+export function listOfAuthor(uid) {
+  const query = new AV.Query('Automation');
+
+  query.equalTo('author', AV.Object.createWithoutData('User', uid))
   query.include('author')
 
   return query.find()

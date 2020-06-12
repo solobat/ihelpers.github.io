@@ -15,6 +15,11 @@
         </nav>
         <nav class="right-nav">
           <ul class="right-nav-list">
+            <li style="position: relative; top: 3px;">
+              <a class="github-button" href="https://github.com/solobat/steward-helper"
+                data-icon="octicon-star" data-size="large" data-show-count="true"
+                aria-label="Star solobat/steward-helper on GitHub">Star</a>
+            </li>
             <li v-if="!loggedIn">
               <router-link to="/register" class="link-btn">Sign up</router-link>
               <router-link to="/login" class="link-btn">Login</router-link>
@@ -23,9 +28,6 @@
               <a-dropdown :trigger="['click']" overlayClassName="user-layer">
                 <span>{{user.username}}</span>
                 <a-menu slot="overlay">
-                  <a-menu-item>
-                    <router-link :to="`/user/settings`">设置</router-link>
-                  </a-menu-item>
                   <a-menu-item>
                     <div @click="onLogoutClick">登出</div>
                   </a-menu-item>
