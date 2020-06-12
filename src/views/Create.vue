@@ -42,11 +42,6 @@
             <a-input v-model="form.pattern" placeholder="Please enter the URL pattern">
             </a-input>
           </a-form-model-item>
-          <a-form-model-item label="Author" prop="author">
-            <a-input v-model="form.author"
-              placeholder="Please enter your github ID or 'solobat'">
-            </a-input>
-          </a-form-model-item>
           <a-form-model-item label="Intro" prop="intro">
             <a-textarea v-model="form.intro"
               placeholder="Please enter the intro of automation" :autoSize="{minRows: 2}">
@@ -82,7 +77,6 @@ export default {
         type: [{ required: true, message: 'Please choose an action!' }],
         target: [{ required: true, message: 'Please enter the selector of target elements' }],
         pattern: [{ required: true, message: 'Please enter the URL pattern' }],
-        author: [{ required: true, message: 'Please enter your github ID' }],
       },
       args: [],
       submitting: false

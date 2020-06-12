@@ -17,8 +17,9 @@
       </div>
       <div class="am-created">
         <div class="author">by
-          <a :href="`https://github.com/${automation.attributes.author}`"
-            target="_blank">{{ automation.attributes.author }}</a>
+          <router-link :to="`/user/${automation.attributes.author.id}`">
+            {{ automation.attributes.author.attributes.username }}
+          </router-link>
         </div>
         <div class="time">{{ automation.createdAt | timeago }}</div>
       </div>

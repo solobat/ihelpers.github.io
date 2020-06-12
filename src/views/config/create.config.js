@@ -7,7 +7,6 @@ export function getActionConfigs() {
 export function getDefaultForm() {
   return {
     name: '',
-    author: "",
     intro: "",
     pattern: '',
     target: 'body',

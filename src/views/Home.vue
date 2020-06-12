@@ -8,6 +8,11 @@
         class="ins-btn ins-webstore" target="_blank">应用商店</a>or,
         <a href class="ins-btn ins-offline">离线下载</a>
       </div>
+      <div class="social-btns">
+        <a class="github-button" href="https://github.com/solobat/steward-helper"
+                data-icon="octicon-star" data-size="large" data-show-count="true"
+                aria-label="Star solobat/steward-helper on GitHub">Star</a>
+      </div>
     </div>
   </div>
 </template>
@@ -56,5 +61,11 @@ h1 {
 .ins-offline {
   margin-left: 10px;
   font-size: 16px;
+}
+
+.social-btns {
+  display: flex;
+  margin-top: 15px;
+  justify-content: space-evenly;
 }
 </style>

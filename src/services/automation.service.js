@@ -17,6 +17,7 @@ export function list(action, searchText) {
   if (searchText) {
     query.contains('name', searchText);
   }
+  query.include('author')
 
   return query.find()
 }
@@ -50,6 +51,7 @@ function create(attrs) {
   automation.set('name', name)
   automation.set('intro', intro)
   automation.set('type', type)
+  automation.set('author', AV.User.current())
 
   return automation.save()
 }

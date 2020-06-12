@@ -14,11 +14,23 @@
           </ul>
         </nav>
         <nav class="right-nav">
-          <ul>
-            <li>
-              <a class="github-button" href="https://github.com/solobat/steward-helper"
-                data-icon="octicon-star" data-size="large" data-show-count="true"
-                aria-label="Star solobat/steward-helper on GitHub">Star</a>
+          <ul class="right-nav-list">
+            <li v-if="!loggedIn">
+              <router-link to="/register" class="link-btn">Sign up</router-link>
+              <router-link to="/login" class="link-btn">Login</router-link>
+            </li>
+            <li v-else>
+              <a-dropdown :trigger="['click']" overlayClassName="user-layer">
+                <span>{{user.username}}</span>
+                <a-menu slot="overlay">
+                  <a-menu-item>
+                    <router-link :to="`/user/settings`">设置</router-link>
+                  </a-menu-item>
+                  <a-menu-item>
+                    <div @click="onLogoutClick">登出</div>
+                  </a-menu-item>
+                </a-menu>
+              </a-dropdown>
             </li>
           </ul>
         </nav>
@@ -28,12 +40,23 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: "TopBar",
 
-  methods: {
+  computed: {
+    ...mapGetters('account', ['loggedIn', 'user', 'uid'])
+  },
 
+  methods: {
+    ...mapActions('account', ['logout']),
+
+    onLogoutClick() {
+      this.logout().then(() => {
+        this.$message.success('登出成功');
+      })
+    }
   }
 };
 </script>
@@ -89,11 +112,32 @@ export default {
 
   .nav-list {
     display: flex;
+    height: 40px;
+    align-items: center;
     margin-left: 20px;
 
     .nav-item {
       padding: 0 18px;
     }
+  }
+
+  .right-nav-list {
+    display: flex;
+    align-items: center;
+    height: 40px;
+
+    li {
+      margin-left: 20px;
+    }
+
+    .link-btn {
+      margin-left: 10px;
+    }
+  }
+
+  .github-btn-wrap {
+    display: flex;
+    align-items: center;
   }
 }
 </style>
