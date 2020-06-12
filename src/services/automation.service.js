@@ -1,4 +1,6 @@
 import AV from 'leancloud-storage'
+import { installationsService } from './installation.service';
+import { setACL } from '../helpers/av.helper'
 
 const Automation = AV.Object.extend('Automation');
 
@@ -19,6 +21,7 @@ export function list(action, searchText) {
     query.contains('name', searchText);
   }
   query.include('author')
+  query.include('installations')
 
   return query.find()
 }
@@ -28,16 +31,17 @@ export function listOfAuthor(uid) {
 
   query.equalTo('author', AV.Object.createWithoutData('User', uid))
   query.include('author')
+  query.include('installations')
 
   return query.find()
 }
 
 export function installOk(id) {
-  const automation = AV.Object.createWithoutData('Automation', id);
+  const installations = AV.Object.createWithoutData('Installations', id);
 
-  automation.increment('installations', 1)
+  installations.increment('count', 1)
   
-  return automation.save(null, {
+  return installations.save(null, {
     fetchWhenSave: true
   })
 }
@@ -62,8 +66,11 @@ function create(attrs) {
   automation.set('intro', intro)
   automation.set('type', type)
   automation.set('author', AV.User.current())
+  setACL(automation)
 
-  return automation.save()
+  return automation.save().then((automation) => {
+    return installationsService.create(automation)
+  })
 }
 
 export function addOne(attrs) {

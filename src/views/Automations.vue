@@ -59,9 +59,11 @@ export default {
     },
 
     onInstallOk(data) {
-      installOk(data.id).then(result => {
-        this.updateInstallations(data.id, result.attributes)
-        console.log("onInstallOk -> result", result)
+      const aid = data.id
+      const am = this.list.find(item => item.id === aid)
+
+      installOk(am.attributes.installations.id).then(result => {
+        am.attributes.installations.attributes.count = result.attributes.count
       })
     },
 

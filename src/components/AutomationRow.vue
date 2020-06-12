@@ -13,7 +13,7 @@
           <my-icon type="icon-anzhuang" />
         </a-popconfirm>
         
-        <span class="count">{{ automation.attributes.installations }}</span>
+        <span class="count">{{ automation.attributes.installations.attributes.count }}</span>
       </div>
       <div class="am-created">
         <div class="author">by
