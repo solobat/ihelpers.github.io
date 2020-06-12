@@ -1,5 +1,4 @@
 import AV from 'leancloud-storage'
-import { setACL } from '../helpers/av.helper'
 
 const Automation = AV.Object.extend('Automation');
 
@@ -63,8 +62,6 @@ function create(attrs) {
   automation.set('intro', intro)
   automation.set('type', type)
   automation.set('author', AV.User.current())
-
-  setACL(automation)
 
   return automation.save()
 }
