@@ -59,7 +59,9 @@ export const BUILDIN_ACTION_CONFIGS = [
       { tips: 'child of <pre> tag', name: 'inpre', type: 'boolean', value: false, defaultValue: false },
       { tips: '<pre> tag', name: 'pre', type: 'boolean', value: false, defaultValue: false },
       { tips: 'Remove some elements', name: 'rm', type: 'string',
-        value: '', defaultValue: '', placeholder: 'css selector' }
+        value: '', defaultValue: '', placeholder: 'css selector' },
+      { tips: 'Position of btn', name: 'pos', type: 'string',
+        value: 'tl', defaultValue: 'tl', placeholder: 'tl|tr' }
     ]
   },
   {
