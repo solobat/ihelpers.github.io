@@ -20,24 +20,10 @@
                 data-icon="octicon-star" data-size="large" data-show-count="true"
                 aria-label="Star solobat/steward-helper on GitHub">Star</a>
             </li>
-            <li v-if="!loggedIn">
-              <router-link to="/register" class="link-btn">{{$t('signup')}}</router-link>
-              <router-link to="/login" class="link-btn">{{$t('login')}}</router-link>
-            </li>
-            <li v-else>
-              <a-dropdown :trigger="['click']" overlayClassName="user-layer">
-                <span>{{user.username}}</span>
-                <a-menu slot="overlay">
-                  <a-menu-item>
-                    <div @click="onLogoutClick">{{$t("logout")}}</div>
-                  </a-menu-item>
-                </a-menu>
-              </a-dropdown>
-            </li>
             <li>
               <a-dropdown :trigger="['click']">
-                <span>{{$t("langChoose")}}
-                  <a-icon type="down" />
+                <span class="btn-trigger">{{$t("langChoose")}}
+                  <a-icon type="caret-down" />
                 </span>
                 <a-menu slot="overlay">
                   <a-menu-item @click="changeLang('en')">
@@ -45,6 +31,22 @@
                   </a-menu-item>
                   <a-menu-item>
                     <a href="javascript:;" @click="changeLang('zh_CN')">简体中文</a>
+                  </a-menu-item>
+                </a-menu>
+              </a-dropdown>
+            </li>
+            <li v-if="!loggedIn">
+              <router-link to="/register" class="link-btn">{{$t('signup')}}</router-link>
+              <router-link to="/login" class="link-btn">{{$t('login')}}</router-link>
+            </li>
+            <li v-else>
+              <a-dropdown :trigger="['click']" overlayClassName="user-layer">
+                <span class="btn-trigger">{{user.username}}
+                  <a-icon type="caret-down" />
+                </span>
+                <a-menu slot="overlay">
+                  <a-menu-item>
+                    <div @click="onLogoutClick">{{$t("logout")}}</div>
                   </a-menu-item>
                 </a-menu>
               </a-dropdown>
@@ -160,6 +162,25 @@ export default {
   .github-btn-wrap {
     display: flex;
     align-items: center;
+  }
+}
+
+.btn-trigger {
+  display: flex;
+  align-items: center;
+  padding: 5px 8px;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-deep;
+  }
+
+  .anticon {
+    position: relative;
+    top: 1px;
+    margin-left: 4px;
+    color: $color-light;
+    font-size: 12px;
   }
 }
 </style>

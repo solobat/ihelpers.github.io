@@ -51,6 +51,16 @@ h1 {
 }
 
 .ins-webstore {
+  border-bottom: 2px solid $color-primary;
+}
+
+.ins-offline {
+  &:hover {
+    border-bottom: 1px solid $color-primary;
+  }
+}
+
+.ins-webstore {
   margin-right: 5px;
   font-size: 24px;
 }
