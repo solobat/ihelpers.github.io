@@ -42,10 +42,17 @@
             <a-input v-model="form.pattern" :placeholder="$t('enter.automation.url.pattern')">
             </a-input>
           </a-form-model-item>
-          <a-form-model-item label="Intro" prop="intro">
-            <a-textarea v-model="form.intro"
+          <a-form-model-item label="Video" prop="video">
+            <a-textarea v-model="form.video"
+              :placeholder="$t('enter.automation.video')" :autoSize="{minRows: 2}">
+            </a-textarea>
+          </a-form-model-item>
+          <a-form-model-item label="Intro" prop="intro" :wrapper-col="{ span: 18 }">
+            <a-icon type="read" :class="{'is-active': inpreview}" @click="onPreviewClick"/>
+            <a-textarea v-model="form.intro" v-show="!inpreview"
               :placeholder="$t('enter.automation.intro')" :autoSize="{minRows: 2}">
             </a-textarea>
+            <div class="intro-preview" v-if="inpreview" v-html="introPreview"></div>
           </a-form-model-item>
           <a-form-model-item :wrapper-col="{ span: 10, offset: 5 }">
             <a-button type="primary" html-type="submit"
@@ -59,8 +66,9 @@
 
 <script>
 import { BUILDIN_ACTION_CONFIGS } from '../constant'
-import { getActionConfigs, getDefaultForm } from './config/create.config'
+import { getActionConfigs, getDefaultForm, getFormRules } from './config/create.config'
 import { addOne } from '../services/automation.service'
+import { parseMarkdown } from '../helpers/marked.helper'
 
 export default {
   name: 'AutomationCreate',
@@ -72,14 +80,11 @@ export default {
       },
       actionConfigs: getActionConfigs(),
       form: getDefaultForm(),
-      rules: {
-        name: [{ required: true, message: this.$t('enter.automation.name') }],
-        type: [{ required: true, message: this.$t('choose.automation.action') }],
-        target: [{ required: true, message: this.$t('enter.automation.target.selector') }],
-        pattern: [{ required: true, message: this.$t('enter.automation.url.pattern') }],
-      },
+      rules: getFormRules(this),
       args: [],
-      submitting: false
+      inpreview: false,
+      submitting: false,
+      introPreview: ''
     }
   },
 
@@ -89,7 +94,7 @@ export default {
       const target = this.form.target
 
       return [action, '@', target].join('')
-    }
+    },
   },
 
   methods: {
@@ -152,6 +157,13 @@ export default {
 
     onActionChange(type) {
       this.updateArgs(type);
+    },
+
+    onPreviewClick() {
+      this.inpreview = !this.inpreview
+      if (this.inpreview) {
+        this.introPreview = parseMarkdown(this.form.intro)
+      }
     }
   }
 }
@@ -174,5 +186,17 @@ export default {
 
 .code {
   line-height: 1.2;
+}
+
+.intro-preview {
+  padding: 10px 25px;
+  background: rgba(27,31,35,.05);
+  line-height: 1.45!important;
+}
+
+.anticon {
+  &.is-active {
+    color: $color-primary;
+  }
 }
 </style>

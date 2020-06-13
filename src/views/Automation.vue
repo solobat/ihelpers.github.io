@@ -36,10 +36,23 @@
               <span class="label">Pattern:</span>
               <code>{{ automation.pattern }} </code>
             </li>
+            <li class="am-field">
+              <span class="label">Install:</span>
+              <a-popconfirm
+                :title="$t('confirm.install', { name: automation.name})"
+                @confirm="installAutomation(automation)"
+              >
+                <span class="btn-install">{{$t("click.install")}}</span>
+              </a-popconfirm>
+            </li>
           </ul>
+          <div class="am-video" v-if="automation.video">
+            <h3>{{$t("Video")}}</h3>
+            <div v-html="automation.video" class="video-wrap"></div>
+          </div>
           <div class="am-intro">
             <h3>{{$t("Intro")}}</h3>
-            <div v-if="introHtml" v-html="introHtml"></div>
+            <div class="intro-view" v-if="introHtml" v-html="introHtml"></div>
             <a-empty :description="$t('No.Intro')" v-else/>
           </div>
         </div>
@@ -145,5 +158,34 @@ export default {
 
 .am-intro {
   margin-top: 20px;
+}
+
+.intro-view {
+  padding: 10px 25px;
+  background: rgba(27,31,35,.05);
+  line-height: 1.45!important;
+}
+
+code {
+  background: rgba(27,31,35,.05);
+  border-radius: 3px;
+  padding: 3px 5px;
+}
+
+.am-video {
+  margin-top: 20px;
+}
+
+.btn-install {
+  color: $color-primary;
+  cursor: pointer;
+}
+</style>
+<style lang="scss">
+.am-video {
+  iframe {
+    width: 600px;
+    height: 337px;
+  }
 }
 </style>

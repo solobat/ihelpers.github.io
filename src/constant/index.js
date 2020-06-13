@@ -47,6 +47,11 @@ export const BUILDIN_ACTION_CONFIGS = [
   {
     value: BUILDIN_ACTIONS.DOWNLOAD,
     label: 'Download element',
+    args: [
+      { tips: 'auto close the new tab opened by automation',
+        name: 'autoclose', type: 'boolean', value: false, defaultValue: false
+      },
+    ]
   },
   {
     value: BUILDIN_ACTIONS.FULL_SCREEN,

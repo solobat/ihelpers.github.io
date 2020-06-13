@@ -68,12 +68,13 @@ export function isExisted(instructions, pattern) {
 }
 
 function create(attrs) {
-  const { instructions, pattern, name, intro, type, } = attrs 
+  const { instructions, pattern, name, intro, type, video } = attrs 
   const automation = new Automation();
   automation.set('instructions', instructions)
   automation.set('pattern', pattern)
   automation.set('name', name)
   automation.set('intro', intro)
+  automation.set('video', video)
   automation.set('type', type)
   automation.set('author', AV.User.current())
   setACL(automation)
