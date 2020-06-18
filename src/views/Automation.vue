@@ -55,6 +55,7 @@
             <div class="intro-view" v-if="introHtml" v-html="introHtml"></div>
             <a-empty :description="$t('No.Intro')" v-else/>
           </div>
+          <div id="gitalk-container"></div>
         </div>
       </div>
     </div>
@@ -67,6 +68,8 @@ import { MyIcon } from "../helpers/icon.helper";
 import InstallMixin from "../mixins/install.mixin";
 import InstallokMixin from '../mixins/installok.mixin'
 import { parseMarkdown } from '../helpers/marked.helper'
+import 'gitalk/dist/gitalk.css'
+import Gitalk from 'gitalk'
 
 export default {
   name: "Automation",
@@ -93,11 +96,28 @@ export default {
         if (this.automation && this.automation.intro) {
           this.introHtml = parseMarkdown(this.automation.intro)
         }
+        this.$nextTick(() => {
+          this.initGitalk();
+        })
       });
     },
 
     getAutomation() {
       return this.automation
+    },
+
+    initGitalk() {
+      const gitalk = new Gitalk({
+        clientID: '0ea5391841ae4237d88c',
+        clientSecret: 'e3bbe39fcf94c97b5a5e023cafc06bc23ddc43b0',
+        repo: 'https://github.com/Steward-helper/steward-helper-comments',
+        owner: 'solobat',
+        admin: ['solobat'],
+        id: location.pathname,      // Ensure uniqueness and length less than 50
+        distractionFreeMode: false
+      })
+
+      gitalk.render('gitalk-container')
     }
   },
 
