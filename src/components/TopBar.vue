@@ -46,6 +46,9 @@
                 </span>
                 <a-menu slot="overlay">
                   <a-menu-item>
+                    <router-link :to="`/user/${uid}`" class="link-btn">{{$t('mypage')}}</router-link>
+                  </a-menu-item>
+                  <a-menu-item>
                     <div @click="onLogoutClick">{{$t("logout")}}</div>
                   </a-menu-item>
                 </a-menu>

@@ -5,18 +5,24 @@
         <div class="am-head">
           <div class="am-name">{{automation.name}}</div>
           <div class="am-data">
-            <div class="am-ins">
-              <a-popconfirm
-                :title="$t('confirm.install', { name: automation.name})"
-                @confirm="installAutomation(automation)"
-              >
-                <my-icon type="icon-anzhuang" />
-              </a-popconfirm>
+            <div class="am-btns">
+              <div class="am-ins">
+                <a-popconfirm
+                  :title="$t('confirm.install', { name: automation.name})"
+                  @confirm="installAutomation(automation)"
+                >
+                  <my-icon type="icon-anzhuang" />
+                </a-popconfirm>
 
-              <span
-                class="count"
-                v-if="automation.installations"
-              >{{ automation.installations.count }}</span>
+                <span
+                  class="count"
+                  v-if="automation.installations"
+                >{{ automation.installations.count }}</span>
+              </div>
+              <router-link class="am-edit" :to="`/automation/update/${id}`">
+                <a-icon style="margin-left: 10px;" type="edit" theme="filled" v-if="editable" />
+                Edit
+              </router-link>
             </div>
             <div class="author">
               by
@@ -64,6 +70,7 @@
 
 <script>
 import { automationService } from "../services/automation.service";
+import { getUser } from '../services/user.service'
 import { MyIcon } from "../helpers/icon.helper";
 import InstallMixin from "../mixins/install.mixin";
 import InstallokMixin from '../mixins/installok.mixin'
@@ -84,14 +91,26 @@ export default {
     return {
       id: this.$route.params.id,
       automation: null,
-      introHtml: ''
+      introHtml: '',
+      editable: false,
     };
   },
 
   methods: {
+    isAuthor(author) {
+      const user = getUser()
+
+      if (user && user.id === author.objectId) {
+        return true
+      } else {
+        return false
+      }
+    },
+
     loadData() {
       automationService.item(this.id).then(automation => {
         this.automation = automation.toJSON();
+        this.editable = this.isAuthor(this.automation.author)
 
         if (this.automation && this.automation.intro) {
           this.introHtml = parseMarkdown(this.automation.intro)
@@ -148,6 +167,10 @@ export default {
   justify-content: space-between;
   margin-top: 12px;
   font-size: 14px;
+}
+
+.am-btns {
+  display: flex;
 }
 
 .anticon {

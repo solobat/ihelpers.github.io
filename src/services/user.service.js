@@ -3,7 +3,8 @@ import AV from 'leancloud-storage'
 export const userService = {
   register,
   login,
-  logout
+  logout,
+  getUser
 }
 
 function register(attrs) {
@@ -25,4 +26,8 @@ export function login(username, password) {
 
 export function logout() {
   return AV.User.logOut()
+}
+
+export function getUser() {
+  return AV.User.current()
 }

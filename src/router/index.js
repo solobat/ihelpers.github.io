@@ -46,6 +46,14 @@ const routes = [
     component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
   },
   {
+    path: '/automation/update/:id',
+    name: 'AutomationUpdate',
+    component: () => import(/* webpackChunkName: "create" */ '../views/Create.vue'),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
     path: '/automation/:id',
     name: 'Automation',
     component: () => import(/* webpackChunkName: "automation" */ '../views/Automation.vue'),

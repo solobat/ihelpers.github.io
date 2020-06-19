@@ -9,17 +9,25 @@
       <div class="am-intro">{{ automation.pattern }}</div>
     </div>
     <div class="am-right">
-      <div class="am-ins">
-        <a-popconfirm
-          :title="$t('confirm.install', { name: automation.name})"
-          @confirm="installAutomation(automation)"
-        >
-          <my-icon type="icon-anzhuang" />
-        </a-popconfirm>
-        
-        <span class="count" v-if="automation.installations">
-          {{ automation.installations.count }}
-        </span>
+      <div class="am-btns">
+        <div class="am-ins">
+          <a-popconfirm
+            :title="$t('confirm.install', { name: automation.name})"
+            @confirm="installAutomation(automation)"
+          >
+            <my-icon type="icon-anzhuang" />
+          </a-popconfirm>
+          
+          <span class="count" v-if="automation.installations">
+            {{ automation.installations.count }}
+          </span>
+        </div>
+        <div class="am-edit" v-if="editable">
+          <router-link class="am-edit" :to="`/automation/update/${id}`">
+            <a-icon style="margin-left: 10px;" type="edit" theme="filled" v-if="editable" />
+            Edit
+          </router-link>
+        </div>
       </div>
       <div class="am-created">
         <div class="author">by
@@ -37,9 +45,10 @@
 import { MyIcon } from '../helpers/icon.helper'
 import { timeago } from '../filter/time'
 import InstallMixin from '../mixins/install.mixin'
+import { mapGetters } from 'vuex';
 
 export default {
-  props: ['automation'],
+  props: ['automation', 'id'],
   name: 'AutomationRow',
 
   filters: {
@@ -50,6 +59,13 @@ export default {
 
   components: {
     MyIcon
+  },
+
+  computed: {
+    ...mapGetters('account', ['loggedIn', 'user', 'uid']),
+    editable() {
+      return this.uid === this.automation.author.objectId
+    }
   },
 
   methods: {
@@ -90,6 +106,10 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
+}
+
+.am-btns {
+  display: flex;
 }
 
 .am-created {

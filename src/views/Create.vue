@@ -56,7 +56,7 @@
           </a-form-model-item>
           <a-form-model-item :wrapper-col="{ span: 10, offset: 5 }">
             <a-button type="primary" html-type="submit"
-              :disabled="submitting">{{$t("create")}}</a-button>
+              :disabled="submitting">{{ submitBtnText }}</a-button>
           </a-form-model-item>
         </a-form-model>
       </div>
@@ -67,14 +67,19 @@
 <script>
 import { BUILDIN_ACTION_CONFIGS } from '../constant'
 import { getActionConfigs, getDefaultForm, getFormRules } from './config/create.config'
-import { addOne } from '../services/automation.service'
+import { addOne, automationService } from '../services/automation.service'
+import { getUser } from '../services/user.service'
 import { parseMarkdown } from '../helpers/marked.helper'
 
 export default {
   name: 'AutomationCreate',
 
   data() {
+    const id = this.$route.params.id;
+
     return {
+      id,
+      mode: id ? 'update' : 'create',
       options: {
         actions: BUILDIN_ACTION_CONFIGS
       },
@@ -95,9 +100,86 @@ export default {
 
       return [action, '@', target].join('')
     },
+    submitBtnText() {
+      return this.mode === 'create' ? this.$t('create') : this.$t('update')
+    }
   },
 
   methods: {
+    isAuthor(author) {
+      const user = getUser()
+
+      return user.id === author.objectId
+    },
+
+    loadData() {
+      automationService.item(this.id).then((resp) => {
+        const automation = resp.toJSON()
+        if (this.isAuthor(automation.author)) {
+          this.handleData(automation)
+        } else {
+          this.$message.warn(this.$t('permission.denied'), () => {
+            this.$router.replace('/')
+          })
+        }
+      })
+    },
+
+    handleData(automation) {
+      const { name, intro, pattern, type, video, instructions } = automation
+
+      Object.assign(this.form, {
+        name, intro, pattern, type, video
+      })
+      this.updateArgs(type)
+
+      const { target, args } = this.parseInstructions(instructions)
+      this.form.target = target
+      this.setArgs(args)
+    },
+
+    setArgs(argsObj) {
+      this.args.forEach(arg => {
+        if (Object.prototype.hasOwnProperty.call(argsObj, arg.name)) {
+          arg.value = argsObj[arg.name]
+        }
+      })
+    },
+
+    getExecOptions(modifiers = []) {
+      const options = {}
+
+      modifiers.forEach((item) => {
+        const [key, ...value] = item.split('!');
+        if (value.length) {
+          if (value.length === 1) {
+            if (value === 'true' || value === 'false') {
+              options[key] = value === 'true' ? true : false
+            } else {
+              options[key] = value[0]
+            }
+          } else {
+            options[key] = value
+          }
+        } else {
+          options[key] = true
+        }
+      })
+
+      return options
+    },
+
+    parseInstructions(str) {
+      const [ actionStr, target ] = str.split('@')
+      const [ action, ...modifiers ] = actionStr.split('^')
+
+      return {
+        action,
+        args: this.getExecOptions(modifiers),
+        target
+      }
+    },
+
     getFullAction() {
       const action = this.form.type
       const args = this.args
@@ -117,6 +199,25 @@ export default {
       this.args = []
     },
 
+    create(formData) {
+      return addOne(formData).then(() => {
+        this.submitting = false
+        this.$message.success(this.$t('create.ok'))
+        this.reset()
+      }).catch(() => {
+        this.$message.error(this.$t('create.error'))
+      })
+    },
+
+    update(formData) {
+      return automationService.updateOne(this.id, formData).then(() => {
+        this.submitting = false;
+        this.$message.success(this.$t('update.ok'))
+      }).catch(() => {
+        this.$message.error(this.$t('update.error'))
+      })
+    },
+
     submit() {
       const params = Object.assign({}, this.form)
       delete params.target
@@ -126,14 +227,11 @@ export default {
       }
       this.submitting = true
 
-      addOne(formData).then(() => {
-        this.submitting = false
-        this.$message.success(this.$t('create.ok'))
-        this.reset()
-      }).catch((msg = 'Something error') => {
-        console.log("submit -> msg", msg)
-        this.$message.error(this.$t('create.error'))
-      })
+      if (this.mode === 'create') {
+        this.create(formData);
+      } else {
+        this.update(formData);
+      }
     },
 
     handleSubmit(e) {
@@ -164,6 +262,12 @@ export default {
       if (this.inpreview) {
         this.introPreview = parseMarkdown(this.form.intro)
       }
+    }
+  },
+
+  mounted() {
+    if (this.mode === 'update') {
+      this.loadData();
     }
   }
 }

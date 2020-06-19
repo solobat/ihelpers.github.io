@@ -28,13 +28,18 @@
   "login.ok": "Successfully login",
   "logout": "Logout",
   "logout.ok": "Successfully logout",
+  "mypage": "My",
   "not.email": "Not a valid email",
   "password": "Password",
+  "permission.denied": "Permission Denied",
   "reenter.password": "Please enter your password again",
   "register.error": "Register failed",
   "register.ok": "Successfully register",
   "repassword": "Repassword",
   "signup": "Sign up",
+  "update": "Update",
+  "update.error": "Update failed",
+  "update.ok": "Successfully update",
   "username": "Username",
   "webstore": "Web Store"
 }

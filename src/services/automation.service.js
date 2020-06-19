@@ -7,6 +7,7 @@ const Automation = AV.Object.extend('Automation');
 export const automationService = {
   list,
   listOfAuthor,
+  updateOne,
   item
 }
 
@@ -94,4 +95,19 @@ export function addOne(attrs) {
       return Promise.reject('Automation has existed')
     }
   })
+}
+
+export function updateOne(id, attrs) {
+  const automation = AV.Object.createWithoutData('Automation', id)
+  const { instructions, pattern, name, intro, type, video } = attrs 
+
+  automation.set('instructions', instructions)
+  automation.set('pattern', pattern)
+  automation.set('name', name)
+  automation.set('intro', intro)
+  automation.set('video', video)
+  automation.set('type', type)
+  automation.increment('version', 1)
+
+  return automation.save()
 }

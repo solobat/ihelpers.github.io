@@ -18,7 +18,7 @@
       </div>
       <loading :visible="loading"/>
       <div class="automations" v-if="list.length">
-        <automation v-for="item in list" :key="item.objectId" :automation="item" />
+        <automation v-for="item in list" :key="item.objectId" :automation="item" :id="item.objectId" />
       </div>
       <a-empty v-if="!loading && !list.length"/>
     </div>

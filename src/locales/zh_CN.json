@@ -28,13 +28,18 @@
   "login.ok": "登录成功",
   "logout": "登出",
   "logout.ok": "登出成功",
+  "mypage": "个人主页",
   "not.email": "邮箱格式错误",
   "password": "密码",
+  "permission.denied": "没有权限",
   "reenter.password": "请再次输入密码",
   "register.error": "注册失败",
   "register.ok": "注册成功",
   "repassword": "重复密码",
   "signup": "注册",
+  "update": "更新",
+  "update.error": "更新失败",
+  "update.ok": "更新成功",
   "username": "用户名",
   "webstore": "应用商店"
 }

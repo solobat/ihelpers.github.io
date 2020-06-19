@@ -8,11 +8,12 @@
         </div>
         <div class="user-data">
           <div class="automations" v-if="list.length">
-            <automation v-for="item in list" :key="item.objectId" :automation="item" />
+            <automation v-for="item in list" :key="item.objectId" :automation="item" :id="item.objectId" />
           </div>
           <a-empty v-if="!loading && !list.length"/>
         </div>
       </div>
+      <a-empty v-if="!loading && !user"/>
     </div>
   </div>
 </template>
@@ -33,6 +34,7 @@ export default {
 
   data() {
     return {
+      loading: true,
       uid: this.$route.params.id,
       list: []
     }
@@ -55,6 +57,7 @@ export default {
 
     loadData() {
       automationService.listOfAuthor(this.uid).then(list => {
+        this.loading = false;
         this.list = list.map(item => item.toJSON())
       })
     }
