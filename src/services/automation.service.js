@@ -22,6 +22,7 @@ export function list(action, searchText) {
   if (searchText) {
     query.contains('name', searchText);
   }
+  query.descending('updatedAt');
   query.include('author')
   query.include('installations')
 

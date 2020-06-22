@@ -106,6 +106,7 @@ export default {
 
 .automations {
   background: #fff;
+  margin-bottom: 20px;
 }
 
 .btn-add {
