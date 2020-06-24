@@ -57,6 +57,11 @@ const routes = [
     path: '/automation/:id',
     name: 'Automation',
     component: () => import(/* webpackChunkName: "automation" */ '../views/Automation.vue'),
+  },
+  {
+    path: '/privacy',
+    name: 'Privacy',
+    component: () => import(/* webpackChunkName: "privacy" */ '../views/Privacy.vue'),
   }
 ]
 
