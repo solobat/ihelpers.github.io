@@ -21,6 +21,7 @@
   "Where is Steward Helper's data stored?": "Steward Helper 的数据存储在哪里？",
   "Why Steward Helper needs these permissions?": "为什么 Steward Helper 需要这些权限？",
   "choose.automation.action": "请选择 action",
+  "choose.automation.runat": "请选择执行时机",
   "click.install": "点击安装",
   "confirm.install": "确定要安装 「{name}」到 Steward Helper 吗?",
   "create": "创建",

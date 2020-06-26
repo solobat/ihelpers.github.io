@@ -21,6 +21,7 @@
   "Where is Steward Helper's data stored?": "Where is Steward Helper's data stored?",
   "Why Steward Helper needs these permissions?": "Why Steward Helper needs these permissions?",
   "choose.automation.action": "Please choose an action!",
+  "choose.automation.runat": "Please choose RunAt",
   "click.install": "Click to install",
   "confirm.install": "Are you sure you want to install [{name}] to Steward Helper?",
   "create": "Create",

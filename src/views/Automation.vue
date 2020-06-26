@@ -43,6 +43,10 @@
               <code>{{ automation.pattern }} </code>
             </li>
             <li class="am-field">
+              <span class="label">RunAt:</span>
+              <code>{{ automation.runAt | runAt }} </code>
+            </li>
+            <li class="am-field">
               <span class="label">Install:</span>
               <a-popconfirm
                 :title="$t('confirm.install', { name: automation.name})"
@@ -71,6 +75,7 @@
 <script>
 import { automationService } from "../services/automation.service";
 import { getUser } from '../services/user.service'
+import { RUN_AT_OPTIONS } from '../constant'
 import { MyIcon } from "../helpers/icon.helper";
 import InstallMixin from "../mixins/install.mixin";
 import InstallokMixin from '../mixins/installok.mixin'
@@ -83,6 +88,18 @@ export default {
 
   components: {
     MyIcon
+  },
+
+  filters: {
+    runAt(value) {
+      const item = RUN_AT_OPTIONS.find(item => item.value === value)
+      
+      if (item) {
+        return item.label
+      } else {
+        return ''
+      }
+    }
   },
 
   mixins: [InstallMixin, InstallokMixin],
@@ -229,6 +246,12 @@ code {
   iframe {
     width: 600px;
     height: 337px;
+  }
+}
+
+.intro-view {
+  img {
+    max-width: 70%;
   }
 }
 </style>

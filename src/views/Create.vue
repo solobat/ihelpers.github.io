@@ -42,6 +42,15 @@
             <a-input v-model="form.pattern" :placeholder="$t('enter.automation.url.pattern')">
             </a-input>
           </a-form-model-item>
+          <a-form-model-item label="RunAt" prop="runAt">
+            <a-select :dropdownMatchSelectWidth="false"
+              :placeholder="$t('choose.automation.runat')"
+              v-model="form.runAt">
+              <a-select-option v-for="item in options.runAt" :key="item.value" :value="item.value">
+                {{ item.label }}
+              </a-select-option>
+            </a-select>
+          </a-form-model-item>
           <a-form-model-item label="Video" prop="video">
             <a-textarea v-model="form.video"
               :placeholder="$t('enter.automation.video')" :autoSize="{minRows: 2}">
@@ -65,7 +74,7 @@
 </template>
 
 <script>
-import { BUILDIN_ACTION_CONFIGS } from '../constant'
+import { BUILDIN_ACTION_CONFIGS, RUN_AT_OPTIONS } from '../constant'
 import { getActionConfigs, getDefaultForm, getFormRules } from './config/create.config'
 import { addOne, automationService } from '../services/automation.service'
 import { getUser } from '../services/user.service'
@@ -81,7 +90,8 @@ export default {
       id,
       mode: id ? 'update' : 'create',
       options: {
-        actions: BUILDIN_ACTION_CONFIGS
+        actions: BUILDIN_ACTION_CONFIGS,
+        runAt: RUN_AT_OPTIONS
       },
       actionConfigs: getActionConfigs(),
       form: getDefaultForm(),
@@ -126,10 +136,10 @@ export default {
     },
 
     handleData(automation) {
-      const { name, intro, pattern, type, video, instructions } = automation
+      const { name, intro, pattern, type, video, instructions, runAt } = automation
 
       Object.assign(this.form, {
-        name, intro, pattern, type, video
+        name, intro, pattern, type, video, runAt
       })
       this.updateArgs(type)
 
@@ -301,6 +311,13 @@ export default {
 .anticon {
   &.is-active {
     color: $color-primary;
+  }
+}
+</style>
+<style lang="scss">
+.intro-preview {
+  img {
+    max-width: 70%;
   }
 }
 </style>

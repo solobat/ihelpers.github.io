@@ -11,6 +11,7 @@ export function getDefaultForm() {
     pattern: '',
     target: 'body',
     type: '',
+    runAt: 1,
     video: ''
   }
 }

@@ -70,7 +70,7 @@ export function isExisted(instructions, pattern) {
 }
 
 function create(attrs) {
-  const { instructions, pattern, name, intro, type, video } = attrs 
+  const { instructions, pattern, name, intro, type, video, runAt } = attrs 
   const automation = new Automation();
   automation.set('instructions', instructions)
   automation.set('pattern', pattern)
@@ -78,6 +78,7 @@ function create(attrs) {
   automation.set('intro', intro)
   automation.set('video', video)
   automation.set('type', type)
+  automation.set('runAt', runAt)
   automation.set('author', AV.User.current())
   setACL(automation)
 
@@ -100,7 +101,7 @@ export function addOne(attrs) {
 
 export function updateOne(id, attrs) {
   const automation = AV.Object.createWithoutData('Automation', id)
-  const { instructions, pattern, name, intro, type, video } = attrs 
+  const { instructions, pattern, name, intro, type, video, runAt } = attrs 
 
   automation.set('instructions', instructions)
   automation.set('pattern', pattern)
@@ -108,6 +109,7 @@ export function updateOne(id, attrs) {
   automation.set('intro', intro)
   automation.set('video', video)
   automation.set('type', type)
+  automation.set('runAt', runAt)
   automation.increment('version', 1)
 
   return automation.save()

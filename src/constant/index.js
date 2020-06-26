@@ -95,3 +95,14 @@ export const BUILDIN_ACTION_OPTIONS = [
   },
   ...BUILDIN_ACTION_CONFIGS
 ]
+
+export const RUN_AT_OPTIONS = [
+  {
+    value: 0,
+    label: 'Immediately'
+  },
+  {
+    value: 1,
+    label: 'DomReady'
+  }
+]
