@@ -8,6 +8,8 @@ export const BUILDIN_ACTIONS = {
   HIGHLIGHT_ENGLISH_SYNTAX: 'highlightEnglishSyntax',
   KILL_ELEMENT: 'killElement',
   READ_MODE: 'readMode',
+  ZEN_MODE: 'zenMode',
+  PICTURE_IN_PICTURE: 'pictureInPicture',
   HASH_ELEMENT: 'hashElement',
   CODE_COPY: 'codeCopy',
   GOTO_ELEMENT: 'gotoElement',
@@ -26,11 +28,27 @@ export const BUILDIN_ACTION_CONFIGS = [
     ],
   },
   {
+    value: BUILDIN_ACTIONS.ZEN_MODE,
+    label: 'Zen Mode',
+    args: [
+      { tips: 'Text to be displayed', name: 'word', type: 'string', value: 'Zen', defaultValue: 'Zen' },
+      { tips: 'How long to delay displaying the page', name: 'delay',
+        type: 'string', value: 0, defaultValue: 0, placeholder: '0 means never display' },
+      { tips: 'Background Color', name: 'bgcolor', type: 'string', value: '#35363a', defaultValue: '#35363a' },
+      { tips: 'Font Color', name: 'color', type: 'string', value: '#ffffff', defaultValue: '#ffffff' },
+    ],
+  },
+  {
     value: BUILDIN_ACTIONS.KILL_ELEMENT,
     label: 'Kill Element',
     args: [
       { tips: 'metaKey', name: 'metaKey', type: 'boolean', value: false, defaultValue: false }
     ],
+  },
+  {
+    value: BUILDIN_ACTIONS.PICTURE_IN_PICTURE,
+    label: 'PIP Mode',
+    args: [ ]
   },
   {
     value: BUILDIN_ACTIONS.HIGHLIGHT_ENGLISH_SYNTAX,
