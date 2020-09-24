@@ -3,40 +3,40 @@
     <div class="container">
       <div class="items">
         <div class="item">
-          <div class="item-q">{{$t("What information does Steward Helper collect?")}}</div>
-          <div class="item-a">{{$t("Steward Helper does not collect any user information")}}</div>
+          <div class="item-q">{{$t("What information does iHelpers collect?")}}</div>
+          <div class="item-a">{{$t("iHelpers does not collect any user information")}}</div>
         </div>
         <div class="item">
-          <div class="item-q">{{$t("What browser permissions does Steward Helper require?")}}</div>
+          <div class="item-q">{{$t("What browser permissions does iHelpers require?")}}</div>
           <div class="item-a">
             <p>- {{$t("Reading browsing records")}}</p>
             <p>- {{$t("Notification")}}</p>
           </div>
         </div>
         <div class="item">
-          <div class="item-q">{{$t("Why Steward Helper needs these permissions?")}}</div>
+          <div class="item-q">{{$t("Why iHelpers needs these permissions?")}}</div>
           <div class="item-a">
             <div class="item-sq">
               {{$t("Reading browsing records")}}: 
             </div>
             <div class="item-a">
-              <p>{{$t("Steward Helper is a uniserval extension.")}}</p>
+              <p>{{$t("iHelpers is a uniserval extension.")}}</p>
               <p>{{$t("It can work on any page, as long as the user uses shortcut keys, right-click menu to call it. ")}}</p>
-              <p>{{$t("Besides, Steward Helper will also monitor the changes of tabs. When the link of one tab matches the user-configured automation's pattern, it will automatically execute the action of the automation.")}}</p>
+              <p>{{$t("Besides, iHelpers will also monitor the changes of tabs. When the link of one tab matches the user-configured automation's pattern, it will automatically execute the action of the automation.")}}</p>
             </div>
             <div class="item-sq">{{$t("Notification")}}:</div>
             <div class="item-a">
-              <p>{{$t("Users can install automations from ihelpers.app and will receive notifications from Steward Helper when the installation succeeds or fails.")}}</p>
+              <p>{{$t("Users can install automations from ihelpers.app and will receive notifications from iHelpers when the installation succeeds or fails.")}}</p>
             </div>
           </div>
         </div>
         <div class="item">
           <div class="item-q">
-            {{$t("Where is Steward Helper's data stored?")}}
+            {{$t("Where is iHelpers's data stored?")}}
           </div>
           <div class="item-a">
-            <p>{{$t("Steward Helper uses IndexDB to store data, which is a form of offline data storage.")}}</p>
-            <p>{{$t("Steward Helper does not upload data to the cloud.")}}</p>
+            <p>{{$t("iHelpers uses IndexDB to store data, which is a form of offline data storage.")}}</p>
+            <p>{{$t("iHelpers does not upload data to the cloud.")}}</p>
           </div>
         </div>
       </div>

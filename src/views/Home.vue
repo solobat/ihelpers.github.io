@@ -1,7 +1,7 @@
 <template>
   <div class="page-home">
     <div class="container">
-      <h1>Steward Helper</h1>
+      <h1>iHelpers</h1>
       <div class="subtit">{{$t("desc")}}</div>
       <div class="install">
         <a href="https://chrome.google.com/webstore/detail/hcnekoladldejmeindnhpjkfhjadcick"
