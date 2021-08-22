@@ -26,7 +26,7 @@
             </div>
             <div class="item-sq">{{$t("Notification")}}:</div>
             <div class="item-a">
-              <p>{{$t("Users can install automations from ihelpers.app and will receive notifications from iHelpers when the installation succeeds or fails.")}}</p>
+              <p>{{$t("Users can install automations from ihelpers.io and will receive notifications from iHelpers when the installation succeeds or fails.")}}</p>
             </div>
           </div>
         </div>
