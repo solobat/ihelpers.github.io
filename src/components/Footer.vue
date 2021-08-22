@@ -3,7 +3,7 @@
     <div class="content">
       <div class="groups">
         <div class="links">
-          <a href="https://ihelpers.app" class="logo">
+          <a href="https://www.ihelpers.io" class="logo">
             <span></span>
           </a>
         </div>
@@ -20,14 +20,14 @@
         </div>
         <div class="links">
           <a href="https://oksteward.com/" target="_blank">Steward</a>
-          <a href="https://paodin.app/" target="_blank">{{$t("Paodin")}}</a>
+          <a href="https://wordcard.app/" target="_blank">{{$t("Paodin")}}</a>
         </div>
       </div>
       <div class="copywrite">
         <span>Steward - {{$t("A command launcher for browser")}}</span>
         <span>
           &nbsp;©&nbsp;2020
-          <a href="https://ihelpers.app">ihelpers.app</a> by
+          <a href="https://www.ihelpers.io">ihelpers.io</a> by
           <a href="https://github.com/solobat" target="_blank">Tomas Yang</a>
         </span>
       </div>
