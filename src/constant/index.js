@@ -16,7 +16,8 @@ export const BUILDIN_ACTIONS = {
   DOWNLOAD: 'download',
   FULL_SCREEN: 'fullScreen',
   TIME_UPDATE: 'timeupdate',
-  CLICK: 'click'
+  CLICK: 'click',
+  BUTTON: 'button'
 }
 
 export const BUILDIN_ACTION_CONFIGS = [
@@ -103,6 +104,19 @@ export const BUILDIN_ACTION_CONFIGS = [
       { tips: 'Handle, The available functions are: {text|trim|number|siblingText}', 
         name: 'handle', type: 'string', value: '', defaultValue: '', placeholder: '[.selector,fn]' }
     ],
+  },
+  {
+    value: BUILDIN_ACTIONS.BUTTON,
+    label: 'Add button',
+    args: [
+      { tips: 'Button Type, available types are: {top|toggle|shortcut|translate}', name: 'type',
+        type: 'string', value: 'top', defaultValue: 'top' },
+      { tips: 'Position of btn', name: 'pos', type: 'string', value: '', defaultValue: '',
+        placeholder: 'tl|tr|bl|br' },
+      { tips: 'CSS selector of the items', name: 'item', type: 'string', value: '', defaultValue: '',
+        placeholder: 'css selector'},
+      { tips: 'Min-height of btn', name: 'mh', type: 'string', value: 35, defaultValue: 35 }
+    ]
   }
 ]
 
