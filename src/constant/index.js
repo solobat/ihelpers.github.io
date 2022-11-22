@@ -9,6 +9,7 @@ export const BUILDIN_ACTIONS = {
   KILL_ELEMENT: 'killElement',
   READ_MODE: 'readMode',
   ZEN_MODE: 'zenMode',
+  BOOKMARK: "bookmark",
   PICTURE_IN_PICTURE: 'pictureInPicture',
   HASH_ELEMENT: 'hashElement',
   CODE_COPY: 'codeCopy',
@@ -37,6 +38,31 @@ export const BUILDIN_ACTION_CONFIGS = [
         type: 'string', value: 0, defaultValue: 0, placeholder: '0 means never display' },
       { tips: 'Background Color', name: 'bgcolor', type: 'string', value: '#35363a', defaultValue: '#35363a' },
       { tips: 'Font Color', name: 'color', type: 'string', value: '#ffffff', defaultValue: '#ffffff' },
+    ],
+  },
+  {
+    value: BUILDIN_ACTIONS.BOOKMARK,
+    label: "Bookmark",
+    args: [
+      {
+        tips: "CSS-Selector of the target items",
+        name: "item",
+        type: "string",
+      },
+      {
+        tips: "Refersh type: auto | manual",
+        name: "refresh",
+        type: "string",
+        defaultValue: "manual",
+        value: "manual",
+      },
+      {
+        tips: "should notify on the title?",
+        name: "nofity",
+        type: "boolean",
+        defaultValue: true,
+        value: true,
+      },
     ],
   },
   {

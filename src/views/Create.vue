@@ -148,6 +148,24 @@ export default {
       this.setArgs(args)
     },
 
+    loadFromQuery() {
+      const {
+        query: { instructions, pattern, runAt },
+      } = this.$route;
+      
+      if (instructions && pattern && runAt) {
+        const { action, target, args } = this.parseInstructions(instructions);
+        Object.assign(this.form, {
+          pattern,
+          type: action,
+          target,
+          runAt: Number(runAt),
+        });
+        this.updateArgs(action);
+        this.setArgs(args);
+      }
+    },
+
     setArgs(argsObj) {
       this.args.forEach(arg => {
         if (Object.prototype.hasOwnProperty.call(argsObj, arg.name)) {
@@ -278,6 +296,8 @@ export default {
   mounted() {
     if (this.mode === 'update') {
       this.loadData();
+    } else {
+      this.loadFromQuery();
     }
   }
 }
