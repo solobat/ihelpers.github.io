@@ -4,17 +4,17 @@
       <div class="form-panel">
         <a-form-model :model="form" :label-col="{ span: 5 }" :wrapper-col="{ span: 10 }"
           @submit="handleSubmit" ref="form" :rules="rules">
-          <a-form-model-item label="Name" prop="name">
+          <a-form-model-item :label="$t('Name')" prop="name">
             <a-input v-model="form.name" :placeholder="$t('enter.automation.name')">
             </a-input>
           </a-form-model-item>
-          <a-form-model-item label="Action" prop="type">
+          <a-form-model-item :label="$t('Action')" prop="type">
             <a-select :dropdownMatchSelectWidth="false"
               :placeholder="$t('choose.automation.action')"
               @change="onActionChange"
               v-model="form.type">
               <a-select-option v-for="item in options.actions" :key="item.value" :value="item.value">
-                {{ item.label }}
+                {{ $t(item.label) }}
               </a-select-option>
             </a-select>
           </a-form-model-item>
@@ -29,34 +29,34 @@
               </a-tooltip>
             </a-form-model-item>
           </template>
-          <a-form-model-item label="Target" prop="target">
+          <a-form-model-item :label="$t('Target')" prop="target">
             <a-input v-model="form.target"
               :placeholder="$t('enter.automation.target.selector')">
               <div slot="addonBefore">@</div>
             </a-input>
           </a-form-model-item>
-          <a-form-model-item label="Instructions" :wrapper-col="{ span: 18 }">
+          <a-form-model-item :label="$t('Instructions')" :wrapper-col="{ span: 18 }">
             <code class="code">{{instructions}}</code>
           </a-form-model-item>
-          <a-form-model-item label="Pattern" prop="pattern">
+          <a-form-model-item :label="$t('Pattern')" prop="pattern">
             <a-input v-model="form.pattern" :placeholder="$t('enter.automation.url.pattern')">
             </a-input>
           </a-form-model-item>
-          <a-form-model-item label="RunAt" prop="runAt">
+          <a-form-model-item :label="$t('RunAt')" prop="runAt">
             <a-select :dropdownMatchSelectWidth="false"
               :placeholder="$t('choose.automation.runat')"
               v-model="form.runAt">
               <a-select-option v-for="item in options.runAt" :key="item.value" :value="item.value">
-                {{ item.label }}
+                {{ $t(item.label) }}
               </a-select-option>
             </a-select>
           </a-form-model-item>
-          <a-form-model-item label="Video" prop="video">
+          <a-form-model-item :label="$t('Video')" prop="video">
             <a-textarea v-model="form.video"
               :placeholder="$t('enter.automation.video')" :autoSize="{minRows: 2}">
             </a-textarea>
           </a-form-model-item>
-          <a-form-model-item label="Intro" prop="intro" :wrapper-col="{ span: 18 }">
+          <a-form-model-item :label="$t('Intro')" prop="intro" :wrapper-col="{ span: 18 }">
             <a-icon type="read" :class="{'is-active': inpreview}" @click="onPreviewClick"/>
             <a-textarea v-model="form.intro" v-show="!inpreview"
               :placeholder="$t('enter.automation.intro')" :autoSize="{minRows: 2}">
