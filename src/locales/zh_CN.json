@@ -104,5 +104,9 @@
   "Action": "操作",
   "Instructions": "指令",
   "Pattern": "模式",
-  "RunAt": "执行于"
+  "RunAt": "执行于",
+  "redirect": "重定向",
+  "path pattern of from page": "源页面的路径模式",
+  "path pattern of to page": "目标页面的路径模式",
+  "hostname of to page": "目标页面的 hostname"
 }

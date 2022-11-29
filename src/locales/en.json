@@ -104,5 +104,9 @@
   "Action": "Action",
   "Instructions": "Instructions",
   "Pattern": "Pattern",
-  "RunAt": "RunAt"
+  "RunAt": "RunAt",
+  "redirect": "Redirect",
+  "path pattern of from page": "path pattern of from page",
+  "path pattern of to page": "path pattern of to page",
+  "hostname of to page": "hostname of to page"
 }

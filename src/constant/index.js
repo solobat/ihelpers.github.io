@@ -24,6 +24,7 @@ export const BUILDIN_ACTIONS = {
   TIME_UPDATE: "timeupdate",
   CLICK: "click",
   BUTTON: "button",
+  REDIRECT: "redirect",
 };
 
 export const BUILDIN_ACTION_CONFIGS = [
@@ -56,6 +57,27 @@ export const BUILDIN_ACTION_CONFIGS = [
   {
     value: BUILDIN_ACTIONS.OUTLINE,
     label: t("outline"),
+  },
+  {
+    value: BUILDIN_ACTIONS.REDIRECT,
+    label: t("redirect"),
+    args: [
+      {
+        tips: t("path pattern of from page"),
+        name: "from",
+        type: "string",
+      },
+      {
+        tips: t("path pattern of to page"),
+        name: "to",
+        type: "string",
+      },
+      {
+        tips: t("hostname of to page"),
+        name: "host",
+        type: "string",
+      },
+    ],
   },
   {
     value: BUILDIN_ACTIONS.ZEN_MODE,
@@ -294,7 +316,7 @@ export const BUILDIN_ACTION_OPTIONS = [
 export const RUN_AT_OPTIONS = [
   {
     value: 0,
-    label: t('Immediately'),
+    label: t("Immediately"),
   },
   {
     value: 1,
