@@ -108,5 +108,6 @@
   "redirect": "Redirect",
   "path pattern of from page": "path pattern of from page",
   "path pattern of to page": "path pattern of to page",
-  "hostname of to page": "hostname of to page"
+  "hostname of to page": "hostname of to page",
+  "documents": "Documents"
 }

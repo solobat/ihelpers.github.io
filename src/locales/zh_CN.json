@@ -108,5 +108,6 @@
   "redirect": "重定向",
   "path pattern of from page": "源页面的路径模式",
   "path pattern of to page": "目标页面的路径模式",
-  "hostname of to page": "目标页面的 hostname"
+  "hostname of to page": "目标页面的 hostname",
+  "documents": "帮助文档"
 }

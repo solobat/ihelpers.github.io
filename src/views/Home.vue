@@ -6,7 +6,7 @@
       <div class="install">
         <a href="https://chrome.google.com/webstore/detail/hcnekoladldejmeindnhpjkfhjadcick"
         class="ins-btn ins-webstore" target="_blank">{{$t("webstore")}}</a>or,
-        <a href class="ins-btn ins-offline">{{$t("download")}}</a>
+        <a href="https://const.app/iHelpers/index.html" target="_blank" class="ins-btn ins-offline">{{$t("documents")}}</a>
       </div>
       <div class="social-btns">
       </div>
