@@ -9,8 +9,7 @@ export function getDefaultForm() {
     name: '',
     intro: "",
     pattern: '',
-    target: 'body',
-    type: '',
+    instructions: '',
     runAt: 1,
     video: ''
   }

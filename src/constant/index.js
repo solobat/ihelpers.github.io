@@ -9,22 +9,31 @@ export const WEB_ACTIONS = {
 
 export const BUILDIN_ACTIONS = {
   HIGHLIGHT_ENGLISH_SYNTAX: "highlightEnglishSyntax",
-  READ_MODE: "readMode",
-  SCROLL: "scroll",
-  BOOKMARK: "bookmark",
-  OUTLINE: "outline",
-  CODE_COPY: "codeCopy",
-  ZEN_MODE: "zenMode",
   KILL_ELEMENT: "killElement",
-  PICTURE_IN_PICTURE: "pictureInPicture",
+  READ_MODE: "readMode",
+  ZEN_MODE: "zenMode",
   HASH_ELEMENT: "hashElement",
+  CODE_COPY: "codeCopy",
   GOTO_ELEMENT: "gotoElement",
   DOWNLOAD: "download",
   FULL_SCREEN: "fullScreen",
   TIME_UPDATE: "timeupdate",
   CLICK: "click",
-  BUTTON: "button",
+  OPEN_PAGE: "openPage",
+  SCROLLBAR: "scrollbar",
+  ALLOW_COPYING: "allowCopying",
+  ACTIVE: "active",
+  SET_VALUE: "setValue",
+  EVENT: "event",
   REDIRECT: "redirect",
+  SCROLL: "scroll",
+  FOCUS: "focus",
+  PROTECT: "protect",
+  PICTURE_IN_PICTURE: "pictureInPicture",
+  DARK_MODE: "darkMode",
+  OUTLINE: "outline",
+  BUTTON: "button",
+  BOOKMARK: "bookmark",
 };
 
 export const BUILDIN_ACTION_CONFIGS = [
@@ -42,15 +51,217 @@ export const BUILDIN_ACTION_CONFIGS = [
     ],
   },
   {
+    value: BUILDIN_ACTIONS.DARK_MODE,
+    label: t("dark_mode"),
+    args: [
+      {
+        tips: "Longitude",
+        name: "long",
+        type: "string",
+        value: 0,
+        defaultValue: 0
+      },
+      {
+        tips: "Latitude",
+        name: "lat",
+        type: "string",
+        value: 0,
+        defaultValue: 0
+      },
+    ],
+  },
+  {
+    value: BUILDIN_ACTIONS.BOOKMARK,
+    label: t("bookmark"),
+    args: [
+      {
+        tips: "CSS-Selector of the target items",
+        name: "item",
+        type: "string",
+        value: "",
+        defaultValue: ""
+      },
+      {
+        tips: "Refersh type: auto | manual",
+        name: "refresh",
+        type: "string",
+        defaultValue: "manual",
+        value: "manual",
+      },
+      {
+        tips: "should notify on the title?",
+        name: "nofity",
+        type: "boolean",
+        defaultValue: true,
+        value: true,
+      },
+    ],
+  },
+
+  {
+    value: BUILDIN_ACTIONS.CODE_COPY,
+    label: t("code_copy"),
+    args: [
+      {
+        tips: "child of <pre> tag",
+        name: "inpre",
+        type: "boolean",
+        value: false,
+        defaultValue: false,
+      },
+      {
+        tips: "<pre> tag",
+        name: "pre",
+        type: "boolean",
+        value: false,
+        defaultValue: false,
+      },
+      {
+        tips: "Remove some elements",
+        name: "rm",
+        type: "string",
+        value: "",
+        defaultValue: "",
+        placeholder: "css selector",
+      },
+      {
+        tips: "Position of btn",
+        name: "pos",
+        type: "string",
+        value: "tl",
+        defaultValue: "tl",
+        placeholder: "tl|tr",
+      },
+    ],
+  },
+  {
+    value: BUILDIN_ACTIONS.CLICK,
+    label: t("click_target"),
+  },
+  {
+    value: BUILDIN_ACTIONS.SCROLLBAR,
+    label: t("scrollbar"),
+    args: [
+      {
+        tips: "Delay to scrolling",
+        name: "delay",
+        type: "string",
+        value: 0,
+        defaultValue: 0
+      },
+    ],
+  },
+  {
+    value: BUILDIN_ACTIONS.OPEN_PAGE,
+    label: t("open_page"),
+    args: [
+      {
+        tips: "url to be opened(optional)",
+        name: "url",
+        type: "string",
+        value: '',
+        defaultValue: ''
+      },
+      {
+        tips: "type of page,such as baike / wiki(optional)",
+        name: "type",
+        type: "string",
+        value: '',
+        defaultValue: ''
+      },
+      {
+        tips: "args of page type(optional)",
+        name: "args",
+        type: "string",
+        value: '',
+        defaultValue: ''
+      },
+    ],
+  },
+  {
+    value: BUILDIN_ACTIONS.EVENT,
+    label: t("event"),
+    args: [
+      {
+        tips: "Name of event",
+        name: "events",
+        type: "string",
+        value: '',
+        defaultValue: ''
+      },
+      {
+        tips: "css selector of target",
+        name: "selector",
+        type: "string",
+        value: '',
+        defaultValue: ''
+      },
+    ],
+  },
+  {
+    value: BUILDIN_ACTIONS.SET_VALUE,
+    label: t("set_value"),
+    args: [
+      {
+        tips: "Value",
+        name: "value",
+        type: "string",
+        value: "",
+        defaultValue: "",
+      },
+    ],
+  },
+  {
+    value: BUILDIN_ACTIONS.ACTIVE,
+    label: t("active"),
+  },
+  {
     value: BUILDIN_ACTIONS.SCROLL,
     label: t("scroll"),
     args: [
       {
-        tips: t("Speed of scrolling with unit px/s"),
+        tips: "Speed of scrolling with unit px/s",
         name: "speed",
-        type: "number",
+        type: "string",
         value: 20,
         defaultValue: 20,
+      },
+    ],
+  },
+
+  {
+    value: BUILDIN_ACTIONS.BUTTON,
+    label: t("button"),
+    args: [
+      {
+        tips: "Button Type, available types are: {top|toggle|shortcut|translate}",
+        name: "type",
+        type: "string",
+        value: "",
+        defaultValue: "",
+      },
+      {
+        tips: "CSS selector of the items",
+        name: "item",
+        type: "string",
+        value: "",
+        defaultValue: "",
+        placeholder: "css selector",
+      },
+      {
+        tips: "Position of btn",
+        name: "pos",
+        type: "string",
+        value: "",
+        defaultValue: "",
+        placeholder: "tl|tr|bl|br",
+      },
+      {
+        tips: "Min-height of btn",
+        name: "mh",
+        type: "string",
+        value: 35,
+        defaultValue: 35,
       },
     ],
   },
@@ -63,35 +274,60 @@ export const BUILDIN_ACTION_CONFIGS = [
     label: t("redirect"),
     args: [
       {
-        tips: t("path pattern of from page"),
+        tips: "path pattern of from page",
         name: "from",
         type: "string",
+        value: '',
+        defaultValue: ''
       },
       {
-        tips: t("path pattern of to page"),
+        tips: "path pattern of to page",
         name: "to",
         type: "string",
+        value: '',
+        defaultValue: ''
       },
       {
-        tips: t("hostname of to page"),
+        tips: "hostname of to page",
         name: "host",
         type: "string",
+        value: '',
+        defaultValue: ''
+      },
+      {
+        tips: "new query(pieces) of url",
+        name: "query",
+        type: "string",
+        value: '',
+        defaultValue: ''
+      },
+      {
+        tips: "format of query: arr | default",
+        name: "qformat",
+        type: "string",
+        value: '',
+        defaultValue: ''
       },
     ],
+  },
+  {
+    value: BUILDIN_ACTIONS.ALLOW_COPYING,
+    label: t("allow_copying"),
+    args: [],
   },
   {
     value: BUILDIN_ACTIONS.ZEN_MODE,
     label: t("zen_mode"),
     args: [
       {
-        tips: t("Text to be displayed"),
+        tips: "Text to be displayed",
         name: "word",
         type: "string",
         value: "Zen",
         defaultValue: "Zen",
       },
       {
-        tips: t("How long to delay displaying the page"),
+        tips: "How long to delay displaying the page",
         name: "delay",
         type: "string",
         value: 0,
@@ -99,14 +335,14 @@ export const BUILDIN_ACTION_CONFIGS = [
         placeholder: "0 means never display",
       },
       {
-        tips: t("Background Color"),
+        tips: "Background Color",
         name: "bgcolor",
         type: "string",
         value: "#35363a",
         defaultValue: "#35363a",
       },
       {
-        tips: t("Font Color"),
+        tips: "Font Color",
         name: "color",
         type: "string",
         value: "#ffffff",
@@ -115,130 +351,32 @@ export const BUILDIN_ACTION_CONFIGS = [
     ],
   },
   {
-    value: BUILDIN_ACTIONS.BOOKMARK,
-    label: t("bookmark"),
-    args: [
-      {
-        tips: t("CSS-Selector of the target items"),
-        name: "item",
-        type: "string",
-      },
-      {
-        tips: t("Refersh type: auto / manual"),
-        name: "refresh",
-        type: "string",
-        defaultValue: "manual",
-        value: "manual",
-      },
-      {
-        tips: t("should notify on the title"),
-        name: "nofity",
-        type: "boolean",
-        defaultValue: true,
-        value: true,
-      },
-    ],
-  },
-  {
-    value: BUILDIN_ACTIONS.KILL_ELEMENT,
-    label: t("kill_element"),
-    args: [
-      {
-        tips: "metaKey",
-        name: "metaKey",
-        type: "boolean",
-        value: false,
-        defaultValue: false,
-      },
-    ],
-  },
-  {
     value: BUILDIN_ACTIONS.PICTURE_IN_PICTURE,
-    label: t("pip_mode"),
+    label: t("start_pip_mode"),
     args: [],
   },
   {
-    value: BUILDIN_ACTIONS.HIGHLIGHT_ENGLISH_SYNTAX,
-    label: t("English Syntax highlighting"),
-  },
-  {
     value: BUILDIN_ACTIONS.HASH_ELEMENT,
-    label: t("Add anchor for elements"),
+    label: t("add_anchor_for_elements"),
   },
   {
     value: BUILDIN_ACTIONS.TIME_UPDATE,
-    label: t("Add time tag for video"),
+    label: t("add_time_tag_for_video"),
   },
-  {
-    value: BUILDIN_ACTIONS.DOWNLOAD,
-    label: t("Download element"),
-    args: [
-      {
-        tips: t("auto close the new tab opened by automation"),
-        name: "autoclose",
-        type: "boolean",
-        value: false,
-        defaultValue: false,
-      },
-    ],
-  },
-  {
-    value: BUILDIN_ACTIONS.FULL_SCREEN,
-    label: t("fullScreen_element"),
-  },
-  {
-    value: BUILDIN_ACTIONS.CODE_COPY,
-    label: t("code_copy"),
-    args: [
-      {
-        tips: t("child of pre tag"),
-        name: "inpre",
-        type: "boolean",
-        value: false,
-        defaultValue: false,
-      },
-      {
-        tips: t("pre tag"),
-        name: "pre",
-        type: "boolean",
-        value: false,
-        defaultValue: false,
-      },
-      {
-        tips: t("Remove some elements"),
-        name: "rm",
-        type: "string",
-        value: "",
-        defaultValue: "",
-        placeholder: "css selector",
-      },
-      {
-        tips: t("Position of btn"),
-        name: "pos",
-        type: "string",
-        value: "tl",
-        defaultValue: "tl",
-        placeholder: "tl|tr",
-      },
-    ],
-  },
-  {
-    value: BUILDIN_ACTIONS.CLICK,
-    label: t("Click"),
-  },
+
   {
     value: BUILDIN_ACTIONS.GOTO_ELEMENT,
-    label: t("Goto element"),
+    label: t("goto_element"),
     args: [
       {
-        tips: t("Auto Goto"),
+        tips: "Auto Goto",
         name: "auto",
         type: "boolean",
         value: false,
         defaultValue: false,
       },
       {
-        tips: t("Target"),
+        tips: "Target",
         name: "to",
         type: "string",
         value: "",
@@ -246,7 +384,7 @@ export const BUILDIN_ACTION_CONFIGS = [
         placeholder: "css selector",
       },
       {
-        tips: t("Order"),
+        tips: "Order",
         name: "order",
         type: "string",
         value: "asc",
@@ -254,52 +392,12 @@ export const BUILDIN_ACTION_CONFIGS = [
         placeholder: "desc/asc",
       },
       {
-        tips: t(
-          "Handle The available functions are text/trim/number/siblingText"
-        ),
+        tips: "Handle, The available functions are: {text|trim|number|siblingText}",
         name: "handle",
         type: "string",
         value: "",
         defaultValue: "",
         placeholder: "[.selector,fn]",
-      },
-    ],
-  },
-  {
-    value: BUILDIN_ACTIONS.BUTTON,
-    label: t("add_button"),
-    args: [
-      {
-        tips: t(
-          "Button Type available types are top/toggle/shortcut/translate"
-        ),
-        name: "type",
-        type: "string",
-        value: "top",
-        defaultValue: "top",
-      },
-      {
-        tips: t("Position of btn"),
-        name: "pos",
-        type: "string",
-        value: "",
-        defaultValue: "",
-        placeholder: "tl|tr|bl|br",
-      },
-      {
-        tips: t("CSS selector of the items"),
-        name: "item",
-        type: "string",
-        value: "",
-        defaultValue: "",
-        placeholder: "css selector",
-      },
-      {
-        tips: t("Min-height of btn"),
-        name: "mh",
-        type: "string",
-        value: 35,
-        defaultValue: 35,
       },
     ],
   },

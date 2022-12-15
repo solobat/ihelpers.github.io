@@ -109,5 +109,18 @@
   "path pattern of from page": "源页面的路径模式",
   "path pattern of to page": "目标页面的路径模式",
   "hostname of to page": "目标页面的 hostname",
-  "documents": "帮助文档"
+  "documents": "帮助文档",
+  "dark_mode": "夜间模式",
+  "scrollbar": "滚动条位置",
+  "open_page": "打开页面",
+  "event": "事件",
+  "set_value": "设值",
+  "active": "激活标签页",
+  "button": "按钮",
+  "allow_copying": "允许复制",
+  "start_pip_mode": "开启画中画模式",
+  "goto_element": "跳转到元素",
+  "add_time_tag_for_video": "视频时间标签",
+  "add_anchor_for_elements": "元素锚点化",
+  "click_target": "点击"
 }

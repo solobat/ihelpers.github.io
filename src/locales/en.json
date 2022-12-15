@@ -109,5 +109,18 @@
   "path pattern of from page": "path pattern of from page",
   "path pattern of to page": "path pattern of to page",
   "hostname of to page": "hostname of to page",
-  "documents": "Documents"
+  "documents": "Documents",
+  "dark_mode": "Dark Mode",
+  "scrollbar": "Scrollbar position",
+  "open_page": "Open page",
+  "event": "Event",
+  "set_value": "Set value",
+  "active": "Active tab",
+  "button": "Button",
+  "allow_copying": "Allow copying",
+  "start_pip_mode": "Start PIP Mode",
+  "goto_element": "Goto element",
+  "add_time_tag_for_video": "Time tag for video",
+  "add_anchor_for_elements": "Add anchors for elements",
+  "click_target": "Click"
 }
