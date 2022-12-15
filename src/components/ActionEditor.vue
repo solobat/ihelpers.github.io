@@ -88,10 +88,7 @@ export default {
         runAt: RUN_AT_OPTIONS,
       },
       actionConfigs,
-      form: {
-        action: "",
-        target: "body",
-      },
+      form: data,
       args: [],
       rules: {},
     };
