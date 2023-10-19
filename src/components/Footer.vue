@@ -3,7 +3,7 @@
     <div class="content">
       <div class="groups">
         <div class="links">
-          <a href="https://www.ihelpers.io" class="logo">
+          <a href="https://www.iautomator.xyz" class="logo">
             <span></span>
           </a>
         </div>
@@ -27,7 +27,7 @@
         <span>Steward - {{$t("A command launcher for browser")}}</span>
         <span>
           &nbsp;©&nbsp;2020
-          <a href="https://www.ihelpers.io">ihelpers.io</a> by
+          <a href="https://www.iautomator.xyz">iautomator.xyz</a> by
           <a href="https://github.com/solobat" target="_blank">Tomas Yang</a>
         </span>
       </div>

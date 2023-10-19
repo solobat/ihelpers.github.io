@@ -1,12 +1,12 @@
 <template>
   <div class="page-home">
     <div class="container">
-      <h1>iHelpers</h1>
+      <h1>iAutomator</h1>
       <div class="subtit">{{$t("desc")}}</div>
       <div class="install">
         <a href="https://chrome.google.com/webstore/detail/hcnekoladldejmeindnhpjkfhjadcick"
         class="ins-btn ins-webstore" target="_blank">{{$t("webstore")}}</a>or,
-        <a href="https://const.app/iHelpers/index.html" target="_blank" class="ins-btn ins-offline">{{$t("documents")}}</a>
+        <a href="https://const.app/iAutomator/index.html" target="_blank" class="ins-btn ins-offline">{{$t("documents")}}</a>
       </div>
       <div class="social-btns">
       </div>

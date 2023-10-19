@@ -16,9 +16,9 @@
         <nav class="right-nav">
           <ul class="right-nav-list">
             <li style="position: relative; top: 3px;">
-              <a class="github-button" href="https://github.com/solobat/ihelpers"
+              <a class="github-button" href="https://github.com/solobat/iAutomator"
                 data-icon="octicon-star" data-size="large" data-show-count="true"
-                aria-label="Star solobat/iHelpers on GitHub">Star</a>
+                aria-label="Star solobat/iAutomator on GitHub">Star</a>
             </li>
             <li>
               <a-dropdown :trigger="['click']">

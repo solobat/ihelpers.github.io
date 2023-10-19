@@ -146,7 +146,7 @@ export default {
       const gitalk = new Gitalk({
         clientID: '0ea5391841ae4237d88c',
         clientSecret: 'e3bbe39fcf94c97b5a5e023cafc06bc23ddc43b0',
-        repo: 'iHelpers-Comments',
+        repo: 'iAutomator-Comments',
         owner: 'solobat',
         admin: ['solobat'],
         id: this.$route.path,      // Ensure uniqueness and length less than 50

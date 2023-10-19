@@ -6,7 +6,7 @@ export default {
         ...automation,
         id: automation.objectId
       }
-      const event = new CustomEvent('ihelpers', {
+      const event = new CustomEvent('iautomator', {
         detail: {
           action: 'installAutomation',
           data: attrs

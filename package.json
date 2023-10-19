@@ -1,5 +1,5 @@
 {
-  "name": "ihelpers-web",
+  "name": "iautomator-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -37,5 +37,5 @@
     "vue-cli-plugin-i18n": "~1.0.1",
     "vue-template-compiler": "^2.6.11"
   },
-  "homepage": "https://www.ihelpers.io"
+  "homepage": "https://www.iAutomator.xyz"
 }
